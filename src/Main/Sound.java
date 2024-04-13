@@ -9,6 +9,7 @@ public class Sound {
 
     Clip clip;
     URL soundURL[] = new URL[30];
+    public boolean isPlaying = false;
 
     public Sound() {
         soundURL[0] = getClass().getClassLoader().getResource("sound/footsteps.wav");

@@ -4,6 +4,8 @@ import Entity.Player;
 import Tile.TileManager;
 import Object.SuperObject;
 
+import javax.sound.sampled.LineEvent;
+import javax.sound.sampled.LineListener;
 import javax.swing.*;
 import java.awt.*;
 
@@ -139,7 +141,20 @@ public class GamePanel extends JPanel implements Runnable {
     }
 
     public void playSoundEffect(int i) {
-        sound.setFile(i);
-        sound.play();
+        if (!sound.isPlaying) {
+            sound.setFile(i);
+            sound.play();
+            sound.isPlaying = true;
+        }
+        sound.clip.addLineListener(new LineListener() {
+            @Override
+            public void update(LineEvent event) {
+                if (event.getType() == LineEvent.Type.STOP) {
+                    sound.isPlaying = false;
+                }
+            }
+        });
     }
+
+
 }

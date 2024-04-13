@@ -142,12 +142,12 @@ public class Player extends Entity {
                 case "Juniper Bunch":
                     hasJuniperBunch++;
                     gp.obj[i] = null;
-                    System.out.println("Player has " + hasJuniperBunch + " Juniper Bunches.");
+                    gp.ui.showMessage("Collected juniper bunch!");
                     break;
                 case "Crab Apples":
                     hasCrabApples++;
                     gp.obj[i] = null;
-                    System.out.println("Player has " + hasCrabApples + " Crab Apples.");
+                    gp.ui.showMessage("Collected crab apples!");
                     break;
             }
         }

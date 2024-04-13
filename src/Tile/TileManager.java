@@ -21,7 +21,7 @@ public class TileManager {
         tile = new Tile[10];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/temp_world_mao.txt");
+        loadMap("maps/temp_world_map.txt");
     }
 
     public void getTileImage() {
@@ -37,7 +37,7 @@ public class TileManager {
             tile[2].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/water.png"));
 
             tile[3] = new Tile();
-            tile[3].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/stone_wall_top.png"));
+            tile[3].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/stone_wall1.png"));
 
             tile[4] = new Tile();
             tile[4].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/stone_wall2.png"));
@@ -46,7 +46,7 @@ public class TileManager {
             tile[5].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/trees2.png"));
 
             tile[6] = new Tile();
-            tile[6].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/trees_top.png"));
+            tile[6].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/trees3.png"));
 
         } catch (IOException e) {
             e.printStackTrace();

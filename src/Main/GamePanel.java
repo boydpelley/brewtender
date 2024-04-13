@@ -89,7 +89,7 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
 
                 if (System.nanoTime() - timer > 1000000000) { // If a second has passed
-                    System.out.println("FPS: " + drawCount);
+                    //System.out.println("FPS: " + drawCount);
                     drawCount = 0;
                     timer = System.nanoTime();
                 }

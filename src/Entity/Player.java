@@ -15,6 +15,8 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
+    int hasJuniperBunch = 0;
+    int hasCrabApples = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         this.gp = gp;
@@ -105,6 +107,7 @@ public class Player extends Entity {
 
         // Check object collision
         int objectIndex = gp.cChecker.checkObject(this, true);
+        pickupObject(objectIndex);
 
         // If collision is false, player CAN move
         if (collisionOn == false) {
@@ -127,7 +130,26 @@ public class Player extends Entity {
             spriteNum = 0;
         }
 
+    }
 
+    public void pickupObject(int i) {
+
+        if (i != 999) {
+            String objectName = gp.obj[i].name;
+
+            switch (objectName) {
+                case "Juniper Bunch":
+                    hasJuniperBunch++;
+                    gp.obj[i] = null;
+                    System.out.println("Player has " + hasJuniperBunch + " Juniper Bunches.");
+                    break;
+                case "Crab Apples":
+                    hasCrabApples++;
+                    gp.obj[i] = null;
+                    System.out.println("Player has " + hasCrabApples + " Crab Apples.");
+                    break;
+            }
+        }
     }
 
     public void draw(Graphics2D g2) {

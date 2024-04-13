@@ -23,7 +23,15 @@ public class Player extends Entity {
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
-        solidArea = new Rectangle(8, 16, 32, 32);
+        solidArea = new Rectangle();
+        solidArea.x = 8;
+        solidArea.y = 16;
+
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
+
+        solidArea.width = 32;
+        solidArea.height = 32;
 
         setDefaultValues();
         getPlayerImage();
@@ -94,6 +102,9 @@ public class Player extends Entity {
         // Check tile collision
         collisionOn = false;
         gp.cChecker.checkTile(this);
+
+        // Check object collision
+        int objectIndex = gp.cChecker.checkObject(this, true);
 
         // If collision is false, player CAN move
         if (collisionOn == false) {

@@ -12,7 +12,8 @@ public class Sound {
     public boolean isPlaying = false;
 
     public Sound() {
-        soundURL[0] = getClass().getClassLoader().getResource("sound/footsteps.wav");
+        soundURL[0] = getClass().getClassLoader().getResource("music/beebebooboo_Master.wav");
+        soundURL[1] = getClass().getClassLoader().getResource("sound/footsteps.wav");
     }
 
     public void setFile(int i) {

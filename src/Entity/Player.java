@@ -69,7 +69,7 @@ public class Player extends Entity {
 
     public void update() {
         if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
-            gp.playSoundEffect(0);
+            gp.playSoundEffect(1);
             spriteCounter++;
             if (spriteCounter < 8) {
                 spriteNum = 0;

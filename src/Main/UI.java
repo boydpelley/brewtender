@@ -18,7 +18,7 @@ public class UI {
         this.gp = gp;
 
         arial_40 = new Font("Arial", Font.PLAIN, 40);
-        OBJ_CrabApples crabApples = new OBJ_CrabApples();
+        OBJ_CrabApples crabApples = new OBJ_CrabApples(gp);
         crabApplesImage = crabApples.image;
     }
 

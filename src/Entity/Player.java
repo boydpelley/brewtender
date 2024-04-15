@@ -2,10 +2,12 @@ package Entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
+import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
 import java.io.IOException;
 
 public class Player extends Entity {
@@ -47,24 +49,33 @@ public class Player extends Entity {
     }
 
     public void getPlayerImage() {
-        try{
 
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player1.png"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player2.png"));
-            down3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player4.png"));
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player5.png"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player6.png"));
-            right3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player8.png"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player9.png"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player10.png"));
-            left3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player12.png"));
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player13.png"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player14.png"));
-            up3 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/player16.png"));
+        down1 = setup("player1");
+        down2 = setup("player2");
+        down3 = setup("player4");
+        right1 = setup("player5");
+        right2 = setup("player6");
+        right3 = setup("player8");
+        left1 = setup("player9");
+        left2 = setup("player10");
+        left3 = setup("player12");
+        up1 = setup("player13");
+        up2 = setup("player14");
+        up3 = setup("player16");
+    }
 
-        } catch(IOException e) {
+    public BufferedImage setup(String imageName) {
+        UtilityTool uTool = new UtilityTool();
+        BufferedImage image = null;
+
+        try {
+            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/" + imageName + ".png"));
+            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return image;
     }
 
     public void update() {
@@ -202,6 +213,6 @@ public class Player extends Entity {
                 }
                 break;
         }
-        g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+        g2.drawImage(image, screenX, screenY, null);
     }
 }

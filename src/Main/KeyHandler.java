@@ -38,6 +38,19 @@ public class KeyHandler implements KeyListener {
                     gp.ui.commandNum = 0;
                 }
             }
+            if (code == KeyEvent.VK_ENTER) {
+                switch (gp.ui.commandNum) {
+                    case 0:
+                        gp.gameState = gp.playState;
+                        break;
+                    case 1:
+                        // TODO: implement save files
+                        break;
+                    case 2:
+                        System.exit(0);
+                        break;
+                }
+            }
         }
 
         // While in Play state

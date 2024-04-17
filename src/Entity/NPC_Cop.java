@@ -34,9 +34,9 @@ public class NPC_Cop extends Entity {
 
     public void setDialogue() {
 
-        dialogues[0] = "Boy what in the sweet hell are you doing out here?!";
-        dialogues[1] = "You didn't hear of anyone selling alcohol now did you?";
-        dialogues[2] = "Don't mind me... Keep your eye out for anything suspicious...";
+        dialogues[0] = "Boy what in the sweet hell are you doing out \nhere?!";
+        dialogues[1] = "You didn't hear of anyone selling alcohol now \ndid you?";
+        dialogues[2] = "Don't mind me... Keep your eye out for anything \nsuspicious...";
         dialogues[3] = "Damned moonshiners.";
 
     }

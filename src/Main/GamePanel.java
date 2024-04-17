@@ -5,8 +5,7 @@ import Entity.Player;
 import Tile.TileManager;
 import Object.SuperObject;
 
-import javax.sound.sampled.LineEvent;
-import javax.sound.sampled.LineListener;
+import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 
@@ -65,8 +64,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         aSetter.setObject();
         aSetter.setNPC();
-        playMusic(0);
-        stopMusic();
+        music.playMusic(0);
         gameState = playState;
     }
 
@@ -184,18 +182,6 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
-    // TO BE USED WHEN MUSIC IS ADDED
-    public void playMusic(int i) {
-
-        music.setFile(i);
-        music.play();
-        music.loop();
-    }
-
-    public void stopMusic() {
-
-        music.stop();
-    }
 
     public void playSoundEffect(int i) {
         if (!sound.isPlaying) {

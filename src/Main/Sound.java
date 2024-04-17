@@ -12,7 +12,7 @@ public class Sound {
     public boolean isPlaying = false;
 
     public Sound() {
-        soundURL[0] = getClass().getClassLoader().getResource("music/beebebooboo_Master.wav");
+        soundURL[0] = getClass().getClassLoader().getResource("music/beebebooboo.wav");
         soundURL[1] = getClass().getClassLoader().getResource("sound/footsteps.wav");
     }
 
@@ -24,6 +24,18 @@ public class Sound {
 
         } catch (Exception e) {
 
+        }
+    }
+
+    public void playMusic(int i) {
+        try {
+            AudioInputStream ais = AudioSystem.getAudioInputStream(soundURL[i]);
+            Clip clip = AudioSystem.getClip();
+            clip.open(ais);
+            clip.start();
+            clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 

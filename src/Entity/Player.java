@@ -156,13 +156,14 @@ public class Player extends Entity {
     }
 
     public void interactNPC(int i) {
-        dialogueCoolDown++;
-        if (i != 999 && dialogueCoolDown == 1) {
-            gp.gameState = gp.dialogueState;
-            gp.npc[i].speak();
-        }
+        if (i != 999) {
+            if (gp.keyH.tPressed) {
+                gp.gameState = gp.dialogueState;
+                gp.npc[i].speak();
+            }
 
-        if (dialogueCoolDown == 10) dialogueCoolDown = 0;
+        }
+        gp.keyH.tPressed = false;
     }
 
     public void draw(Graphics2D g2) {

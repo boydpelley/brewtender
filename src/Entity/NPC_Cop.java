@@ -13,6 +13,7 @@ public class NPC_Cop extends Entity {
         speed = 3;
 
         getImage();
+        setDialogue();
     }
 
     public void getImage() {
@@ -29,6 +30,15 @@ public class NPC_Cop extends Entity {
         up1 = setup("npc/cop10");
         up2 = setup("npc/cop11");
         up3 = setup("npc/cop12");
+    }
+
+    public void setDialogue() {
+
+        dialogues[0] = "Boy what in the sweet hell are you doing out here?!";
+        dialogues[1] = "You didn't hear of anyone selling alcohol now did you?";
+        dialogues[2] = "Don't mind me... Keep your eye out for anything suspicious...";
+        dialogues[3] = "Damned moonshiners.";
+
     }
 
     public void setAction() {
@@ -56,5 +66,15 @@ public class NPC_Cop extends Entity {
 
             actionLockCounter = 0;
         }
+    }
+
+    public void speak() {
+
+        if (dialogues[dialogueIndex] == null) {
+            dialogueIndex = 0;
+        }
+        
+        gp.ui.currentDialogue = dialogues[dialogueIndex];
+        dialogueIndex++;
     }
 }

@@ -15,6 +15,7 @@ public class UI {
     public boolean messageOn = false;
     public String message = "";
     int messageCounter = 0;
+    public String currentDialogue = "";
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -48,11 +49,19 @@ public class UI {
             }
         }
 
+        // Play state
         if (gp.gameState == gp.playState) {
 
         }
+
+        // Pause state
         if (gp.gameState == gp.pauseState) {
             drawPauseScreen(g2);
+        }
+
+        // Dialogue state
+        if (gp.gameState == gp.dialogueState) {
+            drawDialogueScreen();
         }
     }
 
@@ -63,6 +72,35 @@ public class UI {
         int y = gp.screenHeight / 2;
 
         g2.drawString(text, x, y);
+    }
+
+    public void drawDialogueScreen() {
+
+        // Window for dialogue
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize;
+        int width = gp.screenWidth - (gp.tileSize * 4);
+        int height = gp.tileSize * 5;
+
+        drawSubWindow(x, y, width, height);
+
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 32F));
+        x += gp.tileSize;
+        y += gp.tileSize;
+        g2.drawString(currentDialogue, x, y);
+    }
+
+    public void drawSubWindow(int x, int y, int width, int height) {
+
+        Color dialogueColor = new Color(12, 12, 12, 220);
+        g2.setColor(dialogueColor);
+        g2.fillRoundRect(x, y, width, height, 35, 35);
+
+        dialogueColor = new Color(250, 250, 250, 220);
+        g2.setStroke(new BasicStroke(5));
+        g2.setColor(dialogueColor);
+        g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+
     }
 
     public int getXCenteredText(String text) {

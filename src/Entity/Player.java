@@ -18,6 +18,7 @@ public class Player extends Entity {
     public final int screenY;
     int hasJuniperBunch = 0;
     public int hasCrabApples = 0;
+    public int dialogueCoolDown = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -155,9 +156,13 @@ public class Player extends Entity {
     }
 
     public void interactNPC(int i) {
-        if (i != 999) {
-            System.out.println("You are touching the police officer...");
+        dialogueCoolDown++;
+        if (i != 999 && dialogueCoolDown == 1) {
+            gp.gameState = gp.dialogueState;
+            gp.npc[i].speak();
         }
+
+        if (dialogueCoolDown == 10) dialogueCoolDown = 0;
     }
 
     public void draw(Graphics2D g2) {

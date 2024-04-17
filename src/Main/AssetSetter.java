@@ -1,5 +1,6 @@
 package Main;
 
+import Entity.NPC_Cop;
 import Object.*;
 
 public class AssetSetter {
@@ -36,5 +37,11 @@ public class AssetSetter {
         gp.obj[5].worldX = 9 * gp.tileSize;
         gp.obj[5].worldY = 24 * gp.tileSize;
 
+    }
+
+    public void setNPC() {
+        gp.npc[0] = new NPC_Cop(gp);
+        gp.npc[0].worldX = gp.tileSize * 20;
+        gp.npc[0].worldY = gp.tileSize * 25;
     }
 }

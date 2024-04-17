@@ -10,7 +10,7 @@ public class NPC_Cop extends Entity {
         super(gp);
 
         direction = "down";
-        speed = 5;
+        speed = 3;
 
         getImage();
     }
@@ -33,22 +33,28 @@ public class NPC_Cop extends Entity {
 
     public void setAction() {
 
-        Random random = new Random();
+        actionLockCounter++;
 
-        // Pick a number from 1-100
-        int i = random.nextInt(100) + 1;
+        if (actionLockCounter == 120) {
+            Random random = new Random();
 
-        if (i <= 25) {
-            direction = "up";
-        }
-        if (i > 25 && i <= 50) {
-            direction = "down";
-        }
-        if (i > 50 && i <= 75) {
-            direction = "left";
-        }
-        if (i > 75 && i <= 100) {
-            direction = "right";
+            // Pick a number from 1-100
+            int i = random.nextInt(100) + 1;
+
+            if (i <= 25) {
+                direction = "up";
+            }
+            if (i > 25 && i <= 50) {
+                direction = "down";
+            }
+            if (i > 50 && i <= 75) {
+                direction = "left";
+            }
+            if (i > 75 && i <= 100) {
+                direction = "right";
+            }
+
+            actionLockCounter = 0;
         }
     }
 }

@@ -18,6 +18,7 @@ public class UI {
     public String message = "";
     int messageCounter = 0;
     public String currentDialogue = "";
+    public int commandNum = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -30,9 +31,6 @@ public class UI {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-        OBJ_CrabApples crabApples = new OBJ_CrabApples(gp);
-        crabApplesImage = crabApples.image;
     }
 
     public void showMessage(String text) {
@@ -48,15 +46,10 @@ public class UI {
         g2.drawImage(crabApplesImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
         g2.drawString(": " + gp.player.hasCrabApples, 74, 65);
 
-        if (messageOn) {
-            g2.drawString(message, gp.tileSize * 9, 65);
 
-            messageCounter++;
-
-            if (messageCounter > 120) {
-                messageCounter = 0;
-                messageOn = false;
-            }
+        // Title state
+        if (gp.gameState == gp.titleState) {
+            drawTitleScreen();
         }
 
         // Play state
@@ -72,6 +65,59 @@ public class UI {
         // Dialogue state
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
+        }
+    }
+
+    public void drawTitleScreen() {
+
+        g2.setColor(Color.PINK);
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        // Title name
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 96F));
+        String gameTitle = "Brewtender";
+        int x = getXCenteredText(gameTitle);
+        int y = gp.tileSize * 3;
+
+        // Text "shadow"
+        g2.setColor(new Color(55, 55, 55));
+        g2.drawString(gameTitle, x + 5, y + 5);
+
+        // Main colour of text
+        g2.setColor(Color.WHITE);
+        g2.drawString(gameTitle, x, y);
+
+        // TODO: Add beer sprite when added
+        x = (gp.screenWidth / 2) - (gp.tileSize * 2) / 2;
+        y += gp.tileSize * 2;
+        // Use player character for now
+        g2.drawImage(gp.player.down1, x, y, gp.tileSize * 2, gp.tileSize * 2, null);
+
+        // Menu
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD, 48F));
+
+        String text = "NEW GAME";
+        x = getXCenteredText(text);
+        y += gp.tileSize * 5;
+        g2.drawString(text, x, y);
+        if (commandNum == 0) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+        text = "LOAD GAME";
+        x = getXCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 1) {
+            g2.drawString(">", x - gp.tileSize, y);
+        }
+
+        text = "QUIT";
+        x = getXCenteredText(text);
+        y += gp.tileSize;
+        g2.drawString(text, x, y);
+        if (commandNum == 2) {
+            g2.drawString(">", x - gp.tileSize, y);
         }
     }
 

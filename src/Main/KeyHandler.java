@@ -24,6 +24,22 @@ public class KeyHandler implements KeyListener {
 
         int code = e.getKeyCode();
 
+        // Title state
+        if (gp.gameState == gp.titleState) {
+            if (code == KeyEvent.VK_W) {
+                gp.ui.commandNum--;
+                if (gp.ui.commandNum < 0) {
+                    gp.ui.commandNum = 2;
+                }
+            }
+            if (code == KeyEvent.VK_S) {
+                gp.ui.commandNum++;
+                if (gp.ui.commandNum > 2) {
+                    gp.ui.commandNum = 0;
+                }
+            }
+        }
+
         // While in Play state
         if (gp.gameState == gp.playState) {
             if (code == KeyEvent.VK_W) {

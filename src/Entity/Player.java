@@ -107,6 +107,10 @@ public class Player extends Entity {
         int objectIndex = gp.cChecker.checkObject(this, true);
         pickupObject(objectIndex);
 
+        // Check NPC Collision
+        int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
+        interactNPC(npcIndex);
+
         // If collision is false, player CAN move
         if (collisionOn == false) {
             if (keyH.upPressed) {
@@ -147,6 +151,12 @@ public class Player extends Entity {
                     gp.ui.showMessage("Collected crab apples!");
                     break;
             }
+        }
+    }
+
+    public void interactNPC(int i) {
+        if (i != 999) {
+            System.out.println("You are touching the police officer...");
         }
     }
 

@@ -16,9 +16,9 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
+    public int suspicionLevel;
     int hasJuniperBunch = 0;
     public int hasCrabApples = 0;
-    public int dialogueCoolDown = 0;
 
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
@@ -47,6 +47,9 @@ public class Player extends Entity {
         worldY = gp.tileSize * 22;
         speed = 4;
         direction = "down";
+
+        // Player Status
+        suspicionLevel = 0;
     }
 
     public void getPlayerImage() {
@@ -111,6 +114,9 @@ public class Player extends Entity {
         // Check NPC Collision
         int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
         interactNPC(npcIndex);
+
+        // Check event
+        gp.eventHandler.checkEvent();
 
         // If collision is false, player CAN move
         if (collisionOn == false) {

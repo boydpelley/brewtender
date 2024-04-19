@@ -121,6 +121,10 @@ public class UI {
         }
     }
 
+    public void drawHotbar(Graphics2D g2) {
+
+    }
+
     public void drawPauseScreen(Graphics2D g2) {
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 80F));
         String text = "PAUSED";

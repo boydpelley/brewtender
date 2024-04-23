@@ -54,7 +54,7 @@ public class UI {
 
         // Play state
         if (gp.gameState == gp.playState) {
-            drawHotbar(g2);
+            drawHotBar();
         }
 
         // Pause state
@@ -121,20 +121,34 @@ public class UI {
         }
     }
 
-    public void drawHotbar(Graphics2D g2) {
+    public void drawHotBar() {
 
-        // The box for the hotbar
-        int x = gp.tileSize * 2;
-        int y = (gp.tileSize * 2);
-        int width = gp.screenWidth - (gp.screenWidth * 4);
+        // The box for the hot-bar
+        int x = gp.tileSize * 4;
+        int y = gp.screenHeight - (gp.tileSize * 2);
+        int width = gp.screenWidth - (gp.tileSize * 8);
         int height = gp.tileSize;
 
-        Color hotbarColor = new Color(53, 53, 53, 250);
+        Color hotBarColor = new Color(155, 155, 155, 250);
 
-        System.out.println("Drawing hotbar, debug.");
-
-        g2.setColor(hotbarColor);
+        g2.setColor(hotBarColor);
         g2.fillRect(x, y, width, height);
+
+        hotBarHelper(x, y, width, height);
+    }
+
+    public void hotBarHelper(int startX, int startY, int width, int height) {
+
+        Color borderColor = new Color(125, 125, 125, 175);
+
+        int endX = startX + width;
+
+        g2.setStroke(new BasicStroke(4));
+        g2.setColor(borderColor);
+        while (startX < endX) {
+            g2.drawRect(startX, startY, gp.tileSize, height);
+            startX += gp.tileSize;
+        }
     }
 
     public void drawPauseScreen(Graphics2D g2) {

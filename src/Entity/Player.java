@@ -3,6 +3,7 @@ package Entity;
 import Main.GamePanel;
 import Main.KeyHandler;
 import Main.UtilityTool;
+import Object.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -16,7 +17,6 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public int suspicionLevel;
     int hasJuniperBunch = 0;
     public int hasCrabApples = 0;
 
@@ -49,7 +49,20 @@ public class Player extends Entity {
         direction = "down";
 
         // Player Status
-        suspicionLevel = 0;
+        level = 1;
+        foraging = 1;
+        marketability = 1;
+        reputation = 1;
+        beerBrewing = 1;
+        ciderBrewing = 1;
+        distilling = 1;
+        exp = 0;
+        nextLevel = 10;
+        coin = 0;
+        suspicion = 1;
+
+        // Default tool
+        currentTool = new OBJ_Axe_Std(gp);
     }
 
     public void getPlayerImage() {

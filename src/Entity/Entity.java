@@ -12,8 +12,6 @@ import java.util.Objects;
 public class Entity {
     GamePanel gp;
     public int worldX, worldY;
-    public int speed;
-
     public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
     public String direction = "down";
 
@@ -26,9 +24,26 @@ public class Entity {
     public int actionLockCounter = 0;
     String dialogues[] = new String[20];
     int dialogueIndex = 0;
-    public BufferedImage image;
-    public String name;
     public boolean collision = false;
+
+    // Character Attributes
+    public String name;
+    public int speed;
+    public int foraging;
+    public int suspicion;
+    public int marketability;
+    public int reputation;
+    public int beerBrewing;
+    public int ciderBrewing;
+    public int distilling;
+    public int level;
+    public int nextLevel;
+    public int coin;
+    public int exp;
+    public Entity currentTool;
+
+    // Item Attributes
+    public int destroyValue;
 
     public Entity(GamePanel gp) {
         this.gp = gp;

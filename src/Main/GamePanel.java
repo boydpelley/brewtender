@@ -8,7 +8,6 @@ import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 public class GamePanel extends JPanel implements Runnable {
@@ -45,7 +44,7 @@ public class GamePanel extends JPanel implements Runnable {
     // Entities and Objects
     public Player player = new Player(this, keyH);
     public Entity[] obj = new Entity[10];
-    public Entity npc[] = new Entity[10];
+    public Entity[] npc = new Entity[10];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
@@ -84,11 +83,10 @@ public class GamePanel extends JPanel implements Runnable {
     @Override
     public void run() {
 
-        double drawInterval = 1000000000 / FPS; // 0.016666 seconds
+        double drawInterval = (double)1000000000 / FPS; // 0.016666 seconds
         double nextDrawTime = System.nanoTime() + drawInterval;
 
         long timer = System.nanoTime();
-        int drawCount = 0;
 
         while (gameThread != null) {
 
@@ -108,11 +106,8 @@ public class GamePanel extends JPanel implements Runnable {
 
                 nextDrawTime += drawInterval;
 
-                drawCount++;
 
                 if (System.nanoTime() - timer > 1000000000) { // If a second has passed
-                    //System.out.println("FPS: " + drawCount);
-                    drawCount = 0;
                     timer = System.nanoTime();
                 }
 
@@ -129,15 +124,17 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
 
             // NPC
-            for (int i = 0; i < npc.length; i++) {
-                if (npc[i] != null) {
-                    npc[i].update();
+            for (Entity entity : npc) {
+                if (entity != null) {
+                    entity.update();
                 }
             }
         }
+        /*
         if (gameState == pauseState) {
             // Nothing for now
         }
+         */
 
     }
 
@@ -177,16 +174,11 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             // Sort the list by the worldY position
-            Collections.sort(entityList, new Comparator<Entity>() {
-                @Override
-                public int compare(Entity e1, Entity e2) {
-                    return Integer.compare(e1.worldY, e2.worldY);
-                }
-            });
+            entityList.sort(Comparator.comparingInt(e -> e.worldY));
 
             // Draw entities
-            for (int i = 0; i < entityList.size(); i++) {
-                entityList.get(i).draw(g2);
+            for (Entity entity : entityList) {
+                entity.draw(g2);
             }
 
             // Empty entity list because their positions may change
@@ -217,12 +209,9 @@ public class GamePanel extends JPanel implements Runnable {
             sound.play();
             sound.isPlaying = true;
         }
-        sound.clip.addLineListener(new LineListener() {
-            @Override
-            public void update(LineEvent event) {
-                if (event.getType() == LineEvent.Type.STOP) {
-                    sound.isPlaying = false;
-                }
+        sound.clip.addLineListener(event -> {
+            if (event.getType() == LineEvent.Type.STOP) {
+                sound.isPlaying = false;
             }
         });
     }

@@ -2,14 +2,10 @@ package Entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Main.UtilityTool;
 import Object.*;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.BufferedReader;
-import java.io.IOException;
 
 public class Player extends Entity {
 
@@ -188,54 +184,9 @@ public class Player extends Entity {
     }
 
     public void draw(Graphics2D g2) {
-        BufferedImage image = down1;
+        BufferedImage image;
 
-        switch(direction) {
-            case "up":
-                if (spriteNum == 0) {
-                    image = up1;
-                }
-                if (spriteNum == 1) {
-                    image = up2;
-                }
-                if (spriteNum == 2) {
-                    image = up3;
-                }
-                break;
-            case "down":
-                if (spriteNum == 0) {
-                    image = down1;
-                }
-                if (spriteNum == 1) {
-                    image = down2;
-                }
-                if (spriteNum == 2) {
-                    image = down3;
-                }
-                break;
-            case "left":
-                if (spriteNum == 0) {
-                    image = left1;
-                }
-                if (spriteNum == 1) {
-                    image = left2;
-                }
-                if (spriteNum == 2) {
-                    image = left3;
-                }
-                break;
-            case "right":
-                if (spriteNum == 0) {
-                    image = right1;
-                }
-                if (spriteNum == 1) {
-                    image = right2;
-                }
-                if (spriteNum == 2) {
-                    image = right3;
-                }
-                break;
-        }
+        image = getImageForDirectionAndSpriteNum(direction, spriteNum);
         g2.drawImage(image, screenX, screenY, null);
     }
 }

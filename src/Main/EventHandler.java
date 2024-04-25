@@ -1,7 +1,5 @@
 package Main;
 
-import java.awt.*;
-
 public class EventHandler {
 
     GamePanel gp;
@@ -46,26 +44,26 @@ public class EventHandler {
             canTouchEvent = true;
         }
 
+        /*
         if (canTouchEvent) {
             // Check for hits (create methods for what you want to implement)
         }
+         */
     }
 
     public boolean hit(int col, int row, String reqDirection) {
-
-        boolean hit = false;
 
         gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
         gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
         eventRect[col][row].x = col * gp.tileSize + eventRect[col][row].x;
         eventRect[col][row].y = row * gp.tileSize + eventRect[col][row].y;
 
-        if (gp.player.solidArea.intersects(eventRect[col][row]) && eventRect[col][row].eventDone == false) {
+        if (gp.player.solidArea.intersects(eventRect[col][row]) && !eventRect[col][row].eventDone) {
             if (gp.player.direction.contentEquals(reqDirection) || reqDirection.contentEquals("any")) {
-                hit = true;
-
                 previousEventX = gp.player.worldX;
                 previousEventY = gp.player.worldY;
+
+                return true;
             }
         }
 

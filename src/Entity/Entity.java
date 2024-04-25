@@ -22,7 +22,7 @@ public class Entity {
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;
-    String dialogues[] = new String[20];
+    String[] dialogues = new String[20];
     int dialogueIndex = 0;
     public boolean collision = false;
 
@@ -62,11 +62,11 @@ public class Entity {
         gp.ui.currentDialogue = dialogues[dialogueIndex];
         dialogueIndex++;
 
-        switch(gp.player.direction) {
-            case "up": direction = "down"; break;
-            case "down": direction = "up"; break;
-            case "left": direction = "right"; break;
-            case "right": direction = "left"; break;
+        switch (gp.player.direction) {
+            case "up" -> direction = "down";
+            case "down" -> direction = "up";
+            case "left" -> direction = "right";
+            case "right" -> direction = "left";
         }
     }
 
@@ -80,12 +80,12 @@ public class Entity {
         gp.cChecker.checkPlayer(this);
 
         // If collision is false, player CAN move
-        if (collisionOn == false) {
+        if (!collisionOn) {
             switch (direction) {
-                case "up": worldY -= speed; break;
-                case "down": worldY += speed; break;
-                case "left": worldX -= speed; break;
-                case "right": worldX += speed; break;
+                case "up" -> worldY -= speed;
+                case "down" -> worldY += speed;
+                case "left" -> worldX -= speed;
+                case "right" -> worldX += speed;
             }
         }
 
@@ -118,55 +118,29 @@ public class Entity {
                 worldX - gp.tileSize < gp.player.worldX + gp.player.screenX &&
                 worldY + gp.tileSize > gp.player.worldY - gp.player.screenY &&
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenX) {
-            switch(direction) {
-                case "up":
-                    if (spriteNum == 0) {
-                        image = up1;
-                    }
-                    if (spriteNum == 1) {
-                        image = up2;
-                    }
-                    if (spriteNum == 2) {
-                        image = up3;
-                    }
-                    break;
-                case "down":
-                    if (spriteNum == 0) {
-                        image = down1;
-                    }
-                    if (spriteNum == 1) {
-                        image = down2;
-                    }
-                    if (spriteNum == 2) {
-                        image = down3;
-                    }
-                    break;
-                case "left":
-                    if (spriteNum == 0) {
-                        image = left1;
-                    }
-                    if (spriteNum == 1) {
-                        image = left2;
-                    }
-                    if (spriteNum == 2) {
-                        image = left3;
-                    }
-                    break;
-                case "right":
-                    if (spriteNum == 0) {
-                        image = right1;
-                    }
-                    if (spriteNum == 1) {
-                        image = right2;
-                    }
-                    if (spriteNum == 2) {
-                        image = right3;
-                    }
-                    break;
-            }
+            image = getImageForDirectionAndSpriteNum(direction, spriteNum);
 
             g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
         }
+    }
+
+    public BufferedImage getImageForDirectionAndSpriteNum(String direction, int spriteNum) {
+        return switch (direction) {
+            case "up" -> getImageForDirection(up1, up2, up3, spriteNum);
+            case "down" -> getImageForDirection(down1, down2, down3, spriteNum);
+            case "left" -> getImageForDirection(left1, left2, left3, spriteNum);
+            case "right" -> getImageForDirection(right1, right2, right3, spriteNum);
+            default -> null;
+        };
+    }
+
+    private BufferedImage getImageForDirection(BufferedImage img1, BufferedImage img2, BufferedImage img3, int spriteNum) {
+        return switch (spriteNum) {
+            case 0 -> img1;
+            case 1 -> img2;
+            case 2 -> img3;
+            default -> null;
+        };
     }
 
     public BufferedImage setup(String path, int width, int height) {
@@ -174,7 +148,7 @@ public class Entity {
         BufferedImage image = null;
 
         try {
-            image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(path + ".png"));
+            image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream(path + ".png")));
             image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();

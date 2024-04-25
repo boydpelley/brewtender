@@ -7,17 +7,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
-import Object.OBJ_CrabApples;
-
 public class UI {
 
     GamePanel gp;
     Graphics2D g2;
     Font retroGaming;
     BufferedImage crabApplesImage;
-    public boolean messageOn = false;
-    //public String message = "";
-    //int messageCounter = 0;
     public ArrayList<String> message = new ArrayList<>();
     public ArrayList<Integer> messageCounter = new ArrayList<>();
     public String currentDialogue = "";
@@ -28,10 +23,9 @@ public class UI {
 
         try {
             InputStream is = getClass().getClassLoader().getResourceAsStream("font/Retro_Gaming.ttf");
+            assert is != null;
             retroGaming = Font.createFont(Font.TRUETYPE_FONT, is);
-        } catch (FontFormatException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
+        } catch (FontFormatException | IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -256,7 +250,6 @@ public class UI {
         g2.drawString("Marketability", textX, textY);
         textY += lineHeight;
         g2.drawString("Suspicion", textX, textY);
-        textY += lineHeight;
 
         // Atrribute Values
         int tailX = (frameX + frameWidth) - 30;
@@ -317,7 +310,6 @@ public class UI {
         value = String.valueOf(gp.player.suspicion);
         textX = getXForRightAlign(value, tailX);
         g2.drawString(value, textX, textY);
-        textY += lineHeight;
 
     }
 
@@ -336,13 +328,11 @@ public class UI {
 
     public int getXCenteredText(String text) {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = gp.screenWidth / 2 - length / 2;
-        return x;
+        return gp.screenWidth / 2 - length / 2;
     }
 
     public int getXForRightAlign(String text, int tailX) {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
-        int x = tailX - length;
-        return x;
+        return tailX - length;
     }
 }

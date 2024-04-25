@@ -5,17 +5,17 @@ import Main.UtilityTool;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class TileManager {
 
     GamePanel gp;
     public Tile[] tile;
-    public int mapTileNum[][];
+    public int[][] mapTileNum;
 
 
     public TileManager(GamePanel gp) {
@@ -42,7 +42,7 @@ public class TileManager {
 
         try {
             tile[index] = new Tile();
-            tile[index].image = ImageIO.read(getClass().getClassLoader().getResourceAsStream("tiles/"+ imageName + ".png"));
+            tile[index].image = ImageIO.read(Objects.requireNonNull(getClass().getClassLoader().getResourceAsStream("tiles/" + imageName + ".png")));
             tile[index].image = uTool.scaleImage(tile[index].image, gp.tileSize, gp.tileSize);
             tile[index].collision = collision;
         } catch (IOException e) {
@@ -53,6 +53,7 @@ public class TileManager {
     public void loadMap(String filePath) {
         try{
             InputStream is = getClass().getClassLoader().getResourceAsStream(filePath);
+            assert is != null;
             BufferedReader br = new BufferedReader(new InputStreamReader(is));
 
             int col = 0;
@@ -64,7 +65,7 @@ public class TileManager {
 
                 while (col < gp.maxWorldCol) {
 
-                    String numbers[] = line.split(" ");
+                    String[] numbers = line.split(" ");
 
                     int num = Integer.parseInt(numbers[col]);
 

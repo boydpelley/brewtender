@@ -54,13 +54,13 @@ public class NPC_Cop extends Entity {
             if (i <= 25) {
                 direction = "up";
             }
-            if (i > 25 && i <= 50) {
+            else if (i <= 50) {
                 direction = "down";
             }
-            if (i > 50 && i <= 75) {
+            else if (i <= 75) {
                 direction = "left";
             }
-            if (i > 75 && i <= 100) {
+            else {
                 direction = "right";
             }
 

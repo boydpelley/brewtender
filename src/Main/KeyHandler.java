@@ -2,7 +2,6 @@ package Main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.security.Key;
 
 public class KeyHandler implements KeyListener {
 
@@ -105,12 +104,7 @@ public class KeyHandler implements KeyListener {
 
         // Debugging
         if (code == KeyEvent.VK_TAB) {
-            if (!checkDrawTime) {
-                checkDrawTime = true;
-            }
-            else if (checkDrawTime) {
-                checkDrawTime = false;
-            }
+            checkDrawTime = !checkDrawTime;
         }
     }
 

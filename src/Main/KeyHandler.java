@@ -2,6 +2,7 @@ package Main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.security.Key;
 
 public class KeyHandler implements KeyListener {
 
@@ -73,6 +74,9 @@ public class KeyHandler implements KeyListener {
             if (code == KeyEvent.VK_T) {
                 tPressed = true;
             }
+            if (code == KeyEvent.VK_C) {
+                gp.gameState = gp.characterState;
+            }
 
             // Debugging
             if (code == KeyEvent.VK_TAB) {
@@ -95,6 +99,13 @@ public class KeyHandler implements KeyListener {
         // While in Dialogue state
         else if (gp.gameState == gp.dialogueState) {
             if (code == KeyEvent.VK_T) {
+                gp.gameState = gp.playState;
+            }
+        }
+
+        // While in Character Stats State
+        else if (gp.gameState == gp.characterState) {
+            if (code == KeyEvent.VK_C) {
                 gp.gameState = gp.playState;
             }
         }

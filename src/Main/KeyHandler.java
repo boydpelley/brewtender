@@ -94,7 +94,7 @@ public class KeyHandler implements KeyListener {
 
         // While in Dialogue state
         else if (gp.gameState == gp.dialogueState) {
-            if (code == KeyEvent.VK_ENTER) {
+            if (code == KeyEvent.VK_T) {
                 gp.gameState = gp.playState;
             }
         }

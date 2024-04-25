@@ -18,18 +18,18 @@ public class NPC_Cop extends Entity {
 
     public void getImage() {
 
-        down1 = setup("npc/cop1");
-        down2 = setup("npc/cop2");
-        down3 = setup("npc/cop3");
-        right1 = setup("npc/cop4");
-        right2 = setup("npc/cop5");
-        right3 = setup("npc/cop6");
-        left1 = setup("npc/cop7");
-        left2 = setup("npc/cop8");
-        left3 = setup("npc/cop9");
-        up1 = setup("npc/cop10");
-        up2 = setup("npc/cop11");
-        up3 = setup("npc/cop12");
+        down1 = setup("npc/cop1", gp.tileSize, gp.tileSize);
+        down2 = setup("npc/cop2", gp.tileSize, gp.tileSize);
+        down3 = setup("npc/cop3", gp.tileSize, gp.tileSize);
+        right1 = setup("npc/cop4", gp.tileSize, gp.tileSize);
+        right2 = setup("npc/cop5", gp.tileSize, gp.tileSize);
+        right3 = setup("npc/cop6", gp.tileSize, gp.tileSize);
+        left1 = setup("npc/cop7", gp.tileSize, gp.tileSize);
+        left2 = setup("npc/cop8", gp.tileSize, gp.tileSize);
+        left3 = setup("npc/cop9", gp.tileSize, gp.tileSize);
+        up1 = setup("npc/cop10", gp.tileSize, gp.tileSize);
+        up2 = setup("npc/cop11", gp.tileSize, gp.tileSize);
+        up3 = setup("npc/cop12", gp.tileSize, gp.tileSize);
     }
 
     public void setDialogue() {

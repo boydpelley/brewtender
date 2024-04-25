@@ -54,22 +54,22 @@ public class Player extends Entity {
 
     public void getPlayerImage() {
 
-        down1 = setup("player/player1");
-        down2 = setup("player/player2");
-        down3 = setup("player/player4");
-        right1 = setup("player/player5");
-        right2 = setup("player/player6");
-        right3 = setup("player/player8");
-        left1 = setup("player/player9");
-        left2 = setup("player/player10");
-        left3 = setup("player/player12");
-        up1 = setup("player/player13");
-        up2 = setup("player/player14");
-        up3 = setup("player/player16");
+        down1 = setup("player/player1", gp.tileSize, gp.tileSize);
+        down2 = setup("player/player2", gp.tileSize, gp.tileSize);
+        down3 = setup("player/player4", gp.tileSize, gp.tileSize);
+        right1 = setup("player/player5", gp.tileSize, gp.tileSize);
+        right2 = setup("player/player6", gp.tileSize, gp.tileSize);
+        right3 = setup("player/player8", gp.tileSize, gp.tileSize);
+        left1 = setup("player/player9", gp.tileSize, gp.tileSize);
+        left2 = setup("player/player10", gp.tileSize, gp.tileSize);
+        left3 = setup("player/player12", gp.tileSize, gp.tileSize);
+        up1 = setup("player/player13", gp.tileSize, gp.tileSize);
+        up2 = setup("player/player14", gp.tileSize, gp.tileSize);
+        up3 = setup("player/player16", gp.tileSize, gp.tileSize);
     }
 
     public void update() {
-        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
+        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.tPressed) {
             gp.playSoundEffect(1);
             spriteCounter++;
             if (spriteCounter < 8) {
@@ -118,11 +118,8 @@ public class Player extends Entity {
         // Check event
         gp.eventHandler.checkEvent();
 
-        // We want to reset the enter key being pressed afterwards
-        gp.keyH.tPressed = false;
-
         // If collision is false, player CAN move
-        if (collisionOn == false) {
+        if (!collisionOn && !keyH.tPressed) {
             if (keyH.upPressed) {
                 worldY -= speed;
             }
@@ -137,6 +134,9 @@ public class Player extends Entity {
                 worldX += speed;
             }
         }
+
+        // We want to reset the t key being pressed afterwards
+        gp.keyH.tPressed = false;
 
         if (!keyH.upPressed && !keyH.downPressed && !keyH.leftPressed && !keyH.rightPressed) {
             spriteNum = 0;

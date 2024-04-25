@@ -154,13 +154,13 @@ public class Entity {
         }
     }
 
-    public BufferedImage setup(String path) {
+    public BufferedImage setup(String path, int width, int height) {
         UtilityTool uTool = new UtilityTool();
         BufferedImage image = null;
 
         try {
             image = ImageIO.read(getClass().getClassLoader().getResourceAsStream(path + ".png"));
-            image = uTool.scaleImage(image, gp.tileSize, gp.tileSize);
+            image = uTool.scaleImage(image, width, height);
         } catch (IOException e) {
             e.printStackTrace();
         }

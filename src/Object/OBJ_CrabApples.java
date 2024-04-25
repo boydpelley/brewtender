@@ -12,7 +12,7 @@ public class OBJ_CrabApples extends Entity {
         super(gp);
 
         name = "Crab Apples";
-        down1 = setup("objects/crab_apples.png");
+        down1 = setup("objects/crab_apples", gp.tileSize, gp.tileSize);
         collision = true;
     }
 }

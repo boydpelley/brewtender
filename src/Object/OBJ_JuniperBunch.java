@@ -13,7 +13,7 @@ public class OBJ_JuniperBunch extends Entity {
         super(gp);
 
         name = "Juniper Bunch";
-        down1 = setup("objects/juniper_bunch.png");
+        down1 = setup("objects/juniper_bunch", gp.tileSize, gp.tileSize);
         collision = true;
     }
 }

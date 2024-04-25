@@ -66,6 +66,11 @@ public class UI {
         if (gp.gameState == gp.dialogueState) {
             drawDialogueScreen();
         }
+
+        // Character state
+        if (gp.gameState == gp.characterState) {
+            drawCharacterStatScreen();
+        }
     }
 
     public void drawTitleScreen() {
@@ -181,6 +186,110 @@ public class UI {
 
     }
 
+    public void drawCharacterStatScreen() {
+
+        // Create a frame
+        final int frameX = gp.tileSize;
+        final int frameY = gp.tileSize;
+        final int frameWidth = gp.tileSize * 7;
+        final int frameHeight = gp.tileSize * 10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // Text
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(24F));
+
+        int textX = frameX + 20;
+        int textY = frameY + gp.tileSize;
+        final int lineHeight = 36;
+
+        // Attribute Names
+        g2.drawString("Level", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Exp", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Next Level", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Money", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Reputation", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Foraging", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Beer Brewing", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Cider Brewing", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Distilling", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Marketability", textX, textY);
+        textY += lineHeight;
+        g2.drawString("Suspicion", textX, textY);
+        textY += lineHeight;
+
+        // Atrribute Values
+        int tailX = (frameX + frameWidth) - 30;
+        // Reset textY
+        textY = frameY + gp.tileSize;
+        String value;
+
+        value = String.valueOf(gp.player.level);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.exp);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.nextLevel);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.coin);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.reputation);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.foraging);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.beerBrewing);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.ciderBrewing);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.distilling);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.marketability);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+        value = String.valueOf(gp.player.suspicion);
+        textX = getXForRightAlign(value, tailX);
+        g2.drawString(value, textX, textY);
+        textY += lineHeight;
+
+    }
+
     public void drawSubWindow(int x, int y, int width, int height) {
 
         Color dialogueColor = new Color(12, 12, 12, 220);
@@ -197,6 +306,12 @@ public class UI {
     public int getXCenteredText(String text) {
         int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
         int x = gp.screenWidth / 2 - length / 2;
+        return x;
+    }
+
+    public int getXForRightAlign(String text, int tailX) {
+        int length = (int)g2.getFontMetrics().getStringBounds(text, g2).getWidth();
+        int x = tailX - length;
         return x;
     }
 }

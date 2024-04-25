@@ -118,6 +118,9 @@ public class Player extends Entity {
         // Check event
         gp.eventHandler.checkEvent();
 
+        // We want to reset the enter key being pressed afterwards
+        gp.keyH.tPressed = false;
+
         // If collision is false, player CAN move
         if (collisionOn == false) {
             if (keyH.upPressed) {
@@ -169,7 +172,6 @@ public class Player extends Entity {
             }
 
         }
-        gp.keyH.tPressed = false;
     }
 
     public void draw(Graphics2D g2) {

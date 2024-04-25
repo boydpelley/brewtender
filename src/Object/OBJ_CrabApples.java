@@ -11,5 +11,6 @@ public class OBJ_CrabApples extends Entity {
         name = "Crab Apples";
         down1 = setup("objects/crab_apples", gp.tileSize, gp.tileSize);
         collision = true;
+        exp = 1;
     }
 }

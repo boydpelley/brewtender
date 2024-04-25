@@ -16,6 +16,9 @@ public class Player extends Entity {
     int hasJuniperBunch = 0;
     public int hasCrabApples = 0;
 
+    // Requirements to level up skills
+
+
     public Player(GamePanel gp, KeyHandler keyH) {
         super(gp);
 
@@ -158,6 +161,8 @@ public class Player extends Entity {
         if (i != 999) {
             String objectName = gp.obj[i].name;
 
+            exp += gp.obj[i].exp;
+
             switch (objectName) {
                 case "Juniper Bunch" -> {
                     hasJuniperBunch++;
@@ -170,6 +175,15 @@ public class Player extends Entity {
                     gp.ui.addMessage("Collected crab apples!");
                 }
             }
+
+            checkLevelUp();
+        }
+    }
+
+    public void checkLevelUp() {
+        if (exp >= nextLevel) {
+            level++;
+            nextLevel *= 4;
         }
     }
 

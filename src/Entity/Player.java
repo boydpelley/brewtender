@@ -163,16 +163,16 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
 
             switch (objectName) {
-                case "Juniper Bunch":
+                case "Juniper Bunch" -> {
                     hasJuniperBunch++;
                     gp.obj[i] = null;
-                    gp.ui.showMessage("Collected juniper bunch!");
-                    break;
-                case "Crab Apples":
+                    gp.ui.addMessage("Collected juniper bunch!");
+                }
+                case "Crab Apples" -> {
                     hasCrabApples++;
                     gp.obj[i] = null;
-                    gp.ui.showMessage("Collected crab apples!");
-                    break;
+                    gp.ui.addMessage("Collected crab apples!");
+                }
             }
         }
     }

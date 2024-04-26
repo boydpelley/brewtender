@@ -17,6 +17,10 @@ public class Player extends Entity {
     public int hasCrabApples = 0;
 
     // Requirements to level up skills
+    public int nextForagingLevel, nextBeerLevel, nextCiderLevel, nextDistillingLevel, nextRepLevel, nextMarketingLevel;
+
+    // Exp points associated
+    public int foragingExp, beerExp, ciderExp, distillingExp, marketingExp, reputationExp;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -55,10 +59,26 @@ public class Player extends Entity {
         beerBrewing = 1;
         ciderBrewing = 1;
         distilling = 1;
-        exp = 0;
-        nextLevel = 10;
         coin = 0;
         suspicion = 1;
+
+        // Default the experience points
+        exp = 0;
+        foragingExp = 0;
+        beerExp = 0;
+        ciderExp = 0;
+        distillingExp = 0;
+        marketingExp = 0;
+        reputationExp = 0;
+
+        // Set the next levels
+        nextLevel = 10;
+        nextForagingLevel = 50;
+        nextBeerLevel = 25;
+        nextCiderLevel = 25;
+        nextDistillingLevel = 20;
+        nextRepLevel = 25;
+        nextMarketingLevel = 50;
 
         // Default tool
         currentTool = new OBJ_Axe_Std(gp);
@@ -162,6 +182,7 @@ public class Player extends Entity {
             String objectName = gp.obj[i].name;
 
             exp += gp.obj[i].exp;
+            foraging += gp.obj[i].exp;
 
             switch (objectName) {
                 case "Juniper Bunch" -> {
@@ -176,14 +197,22 @@ public class Player extends Entity {
                 }
             }
 
-            checkLevelUp();
+            checkExpLevelUp();
+            checkForagingLevelUp();
         }
     }
 
-    public void checkLevelUp() {
+    public void checkExpLevelUp() {
         if (exp >= nextLevel) {
             level++;
             nextLevel *= 4;
+        }
+    }
+
+    public void checkForagingLevelUp() {
+        if (foragingExp >= nextForagingLevel) {
+            foraging++;
+            nextForagingLevel *= 4;
         }
     }
 

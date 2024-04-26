@@ -17,6 +17,8 @@ public class UI {
     public ArrayList<Integer> messageCounter = new ArrayList<>();
     public String currentDialogue = "";
     public int commandNum = 0;
+    public int slotRow = 0;
+    public int slotCol = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -51,7 +53,7 @@ public class UI {
 
         // Play state
         if (gp.gameState == gp.playState) {
-            drawHotBar();
+            //drawHotBar();
             drawMessage();
         }
 
@@ -68,6 +70,7 @@ public class UI {
         // Character state
         if (gp.gameState == gp.characterState) {
             drawCharacterStatScreen();
+            drawInventory();
         }
     }
 
@@ -323,6 +326,32 @@ public class UI {
         g2.setStroke(new BasicStroke(5));
         g2.setColor(dialogueColor);
         g2.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+
+    }
+
+    public void drawInventory() {
+        int frameX = gp.tileSize * 12;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize * 6;
+        int frameHeight = gp.tileSize * 6;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        // Inventory slots
+        final int slotXStart = frameX + 20;
+        final int slotYStart = frameY + 20;
+        int slotX = slotXStart;
+        int slotY = slotYStart;
+
+        // Draw Cursor
+        int cursorX = slotXStart + (gp.tileSize * slotCol);
+        int cursorY = slotYStart + (gp.tileSize * slotRow);
+        int cursorWidth = gp.tileSize;
+        int cursorHeight = gp.tileSize;
+
+        // Draw cursor
+        g2.setColor(Color.WHITE);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
     }
 

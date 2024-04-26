@@ -12,5 +12,6 @@ public class OBJ_CrabApples extends Entity {
         down1 = setup("objects/crab_apples", gp.tileSize, gp.tileSize);
         collision = true;
         exp = 1;
+        foraging = 1;
     }
 }

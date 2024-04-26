@@ -13,5 +13,6 @@ public class OBJ_JuniperBunch extends Entity {
         down1 = setup("objects/juniper_bunch", gp.tileSize, gp.tileSize);
         collision = true;
         exp = 2;
+        foraging = 1;
     }
 }

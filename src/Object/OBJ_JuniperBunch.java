@@ -14,5 +14,6 @@ public class OBJ_JuniperBunch extends Entity {
         collision = true;
         exp = 2;
         foraging = 1;
+        description = "A berry that typically used in spicing foods and making gin.";
     }
 }

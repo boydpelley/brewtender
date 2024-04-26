@@ -341,10 +341,23 @@ public class UI {
         final int slotYStart = frameY + 20;
         int slotX = slotXStart;
         int slotY = slotYStart;
+        int slotSize = gp.tileSize + 2; // This is used to balance out the inventory slots
+
+        // Draw items
+        for (int i = 0; i < gp.player.inventory.size(); i++) {
+
+            g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
+
+            slotX += slotSize;
+            if (i == 4 || i == 9 || i == 14 || i == 19) {
+                slotX = slotXStart;
+                slotY += slotSize;
+            }
+        }
 
         // Draw Cursor
-        int cursorX = slotXStart + (gp.tileSize * slotCol);
-        int cursorY = slotYStart + (gp.tileSize * slotRow);
+        int cursorX = slotXStart + (slotSize * slotCol);
+        int cursorY = slotYStart + (slotSize * slotRow);
         int cursorWidth = gp.tileSize;
         int cursorHeight = gp.tileSize;
 
@@ -353,6 +366,32 @@ public class UI {
         g2.setStroke(new BasicStroke(3));
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
+        // Description frame
+        int dFrameX = frameX;
+        int dFrameY = frameY + frameHeight;
+        int dFrameWidth = frameWidth;
+        int dFrameHeight = gp.tileSize * 3;
+        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+
+        // Draw description
+        int textX = dFrameX + 20;
+        int textY = dFrameY + gp.tileSize;
+        g2.setFont(g2.getFont().deriveFont(12F));
+
+        int itemIndex = getItemIndexFromSlots();
+
+        if (itemIndex < gp.player.inventory.size()) {
+
+            for (String line : gp.player.inventory.get(itemIndex).description.split("\n")) {
+                g2.drawString(line, textX, textY);
+                textY += 30;
+            }
+        }
+
+    }
+
+    public int getItemIndexFromSlots() {
+        return slotCol + (slotRow * 5);
     }
 
     public int getXCenteredText(String text) {

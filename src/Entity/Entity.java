@@ -44,6 +44,7 @@ public class Entity {
 
     // Item Attributes
     public int destroyValue;
+    public String description = "";
 
     public Entity(GamePanel gp) {
         this.gp = gp;

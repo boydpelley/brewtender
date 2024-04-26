@@ -6,6 +6,7 @@ import Object.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Player extends Entity {
 
@@ -15,6 +16,8 @@ public class Player extends Entity {
     public final int screenY;
     int hasJuniperBunch = 0;
     public int hasCrabApples = 0;
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 25;
 
     // Requirements to level up skills
     public int nextForagingLevel, nextBeerLevel, nextCiderLevel, nextDistillingLevel, nextRepLevel, nextMarketingLevel;
@@ -43,6 +46,7 @@ public class Player extends Entity {
 
         setDefaultValues();
         getPlayerImage();
+        setItems();
     }
 
     public void setDefaultValues() {
@@ -82,6 +86,19 @@ public class Player extends Entity {
 
         // Default tool
         currentTool = new OBJ_Axe_Std(gp);
+    }
+
+    public void setItems() {
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
+        inventory.add(new OBJ_Axe_Std(gp));
     }
 
     public void getPlayerImage() {

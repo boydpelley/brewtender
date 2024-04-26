@@ -10,7 +10,8 @@ public class OBJ_Axe_Std extends Entity {
 
         name = "Standard Axe";
         down1 = setup("objects/axe_std", gp.tileSize, gp.tileSize);
+        collision = true;
         destroyValue = 1;
-        description = "A basic axe used for chopping trees, when needed.";
+        description = "A basic axe used for chopping \ntrees, when needed.";
     }
 }

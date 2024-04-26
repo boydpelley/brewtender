@@ -12,7 +12,6 @@ public class UI {
     GamePanel gp;
     Graphics2D g2;
     Font retroGaming;
-    BufferedImage crabApplesImage;
     public ArrayList<String> message = new ArrayList<>();
     public ArrayList<Integer> messageCounter = new ArrayList<>();
     public String currentDialogue = "";
@@ -42,9 +41,6 @@ public class UI {
 
         g2.setFont(retroGaming);
         g2.setColor(Color.WHITE);
-        g2.drawImage(crabApplesImage, gp.tileSize / 2, gp.tileSize / 2, gp.tileSize, gp.tileSize, null);
-        g2.drawString(": " + gp.player.hasCrabApples, 74, 65);
-
 
         // Title state
         if (gp.gameState == gp.titleState) {
@@ -371,7 +367,6 @@ public class UI {
         int dFrameY = frameY + frameHeight;
         int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize * 3;
-        drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
         // Draw description
         int textX = dFrameX + 20;
@@ -381,6 +376,7 @@ public class UI {
         int itemIndex = getItemIndexFromSlots();
 
         if (itemIndex < gp.player.inventory.size()) {
+            drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
 
             for (String line : gp.player.inventory.get(itemIndex).description.split("\n")) {
                 g2.drawString(line, textX, textY);

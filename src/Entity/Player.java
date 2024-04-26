@@ -14,8 +14,6 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    int hasJuniperBunch = 0;
-    public int hasCrabApples = 0;
     public ArrayList<Entity> inventory = new ArrayList<>();
     public final int maxInventorySize = 25;
 
@@ -34,13 +32,12 @@ public class Player extends Entity {
         screenX = gp.screenWidth / 2 - (gp.tileSize / 2);
         screenY = gp.screenHeight / 2 - (gp.tileSize / 2);
 
+        // Solid Area of the player
         solidArea = new Rectangle();
         solidArea.x = 8;
         solidArea.y = 16;
-
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
-
         solidArea.width = 32;
         solidArea.height = 32;
 
@@ -89,16 +86,7 @@ public class Player extends Entity {
     }
 
     public void setItems() {
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
-        inventory.add(new OBJ_Axe_Std(gp));
+
     }
 
     public void getPlayerImage() {
@@ -196,26 +184,21 @@ public class Player extends Entity {
     public void pickupObject(int i) {
 
         if (i != 999) {
-            String objectName = gp.obj[i].name;
+            String text;
+            if (inventory.size() != maxInventorySize) {
+                inventory.add(gp.obj[i]);
+                text = "Collected " + gp.obj[i].name + "!";
 
-            exp += gp.obj[i].exp;
-            foraging += gp.obj[i].exp;
+                exp += gp.obj[i].exp;
+                foraging += gp.obj[i].exp;
 
-            switch (objectName) {
-                case "Juniper Bunch" -> {
-                    hasJuniperBunch++;
-                    gp.obj[i] = null;
-                    gp.ui.addMessage("Collected juniper bunch!");
-                }
-                case "Crab Apples" -> {
-                    hasCrabApples++;
-                    gp.obj[i] = null;
-                    gp.ui.addMessage("Collected crab apples!");
-                }
+                checkExpLevelUp();
+                checkForagingLevelUp();
+            } else {
+                text = "Inventory full.";
             }
-
-            checkExpLevelUp();
-            checkForagingLevelUp();
+            gp.ui.addMessage(text);
+            gp.obj[i] = null;
         }
     }
 

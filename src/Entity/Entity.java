@@ -19,6 +19,7 @@ public class Entity {
     public int spriteNum = 0;
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle toolArea = new Rectangle(0, 0, 36, 36);
     public int solidAreaDefaultX, solidAreaDefaultY;
     public boolean collisionOn = false;
     public int actionLockCounter = 0;

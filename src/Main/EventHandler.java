@@ -44,11 +44,19 @@ public class EventHandler {
             canTouchEvent = true;
         }
 
-        /*
+
         if (canTouchEvent) {
-            // Check for hits (create methods for what you want to implement)
+            if (hit(17, 35, "any")) interactForage();
+            if (hit(17, 35, "any")) interactForage();
         }
-         */
+
+    }
+
+    public void interactForage() {
+        if (gp.keyH.qPressed) {
+
+        }
+        gp.keyH.qPressed = false;
     }
 
     public boolean hit(int col, int row, String reqDirection) {

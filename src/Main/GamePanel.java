@@ -43,8 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities and Objects
     public Player player = new Player(this, keyH);
-    public Entity[] obj = new Entity[10];
+    public Entity[] obj = new Entity[15];
     public Entity[] npc = new Entity[10];
+    public Entity[] droppable = new Entity[10];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
@@ -68,6 +69,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void setupGame() {
 
+        aSetter.setDroppable();
         aSetter.setObject();
         aSetter.setNPC();
         //music.playMusic(0);
@@ -164,6 +166,12 @@ public class GamePanel extends JPanel implements Runnable {
             for (Entity n : npc) {
                 if (n != null) {
                     entityList.add(n);
+                }
+            }
+
+            for (Entity drop : droppable) {
+                if (drop != null) {
+                    entityList.add(drop);
                 }
             }
 

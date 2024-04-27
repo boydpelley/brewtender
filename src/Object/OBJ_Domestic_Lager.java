@@ -24,7 +24,7 @@ public class OBJ_Domestic_Lager extends Entity {
         gp.ui.addMessage("Nothing like a domestic for a marathon!");
 
         if (gp.player.speed > 4) {
-            entity.speed -= speedIncrease;
+            entity.speed -= speedIncrease * 2;
             gp.ui.addMessage("You start to feel sluggish...");
         }
 

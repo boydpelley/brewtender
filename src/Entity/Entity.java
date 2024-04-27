@@ -86,13 +86,20 @@ public class Entity {
 
     public void use(Entity entity) {}
 
+    public void checkDrop() {}
+
+    public void dropItem(Entity droppedItem) {
+
+    }
+
     public void update() {
 
         setAction();
 
         collisionOn = false;
         gp.cChecker.checkTile(this);
-        gp.cChecker.checkObject(this, false);
+        gp.cChecker.checkObject(this, false, gp.obj);
+        gp.cChecker.checkObject(this, false, gp.droppable);
         gp.cChecker.checkPlayer(this);
 
         // If collision is false, player CAN move
@@ -136,7 +143,7 @@ public class Entity {
                 worldY - gp.tileSize < gp.player.worldY + gp.player.screenX) {
             image = getImageForDirectionAndSpriteNum(direction, spriteNum);
 
-            g2.drawImage(image, screenX, screenY, gp.tileSize, gp.tileSize, null);
+            g2.drawImage(image, screenX, screenY, null);
         }
     }
 

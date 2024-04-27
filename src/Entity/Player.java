@@ -175,8 +175,11 @@ public class Player extends Entity {
         collisionOn = false;
         gp.cChecker.checkTile(this);
 
-        // Check object collision
-        int objectIndex = gp.cChecker.checkObject(this, true);
+        // Check for collision of objects that drop items
+        gp.cChecker.checkObject(this, false, gp.droppable);
+
+        // Check object collision for pickup
+        int objectIndex = gp.cChecker.checkObject(this, true, gp.obj);
         pickupObject(objectIndex);
 
         // Check NPC Collision

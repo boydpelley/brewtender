@@ -8,7 +8,8 @@ import java.awt.event.KeyListener;
 public class KeyHandler implements KeyListener {
 
     GamePanel gp;
-    public boolean upPressed, downPressed, leftPressed, rightPressed, tPressed, ePressed;
+    public boolean upPressed, downPressed, leftPressed, rightPressed,
+            tPressed, ePressed, qPressed;
 
     // Debug
     boolean checkDrawTime = false;
@@ -102,6 +103,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_E) {
             ePressed = true;
+        }
+        if (code == KeyEvent.VK_Q) {
+            qPressed = true;
         }
         if (code == KeyEvent.VK_C) {
             gp.gameState = gp.characterState;

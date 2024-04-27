@@ -11,21 +11,25 @@ import java.util.Objects;
 
 public class Entity {
     GamePanel gp;
-    public int worldX, worldY;
     public BufferedImage up1, up2, up3, down1, down2, down3, left1, left2, left3, right1, right2, right3;
-    public String direction = "down";
-
-    public int spriteCounter = 0;
-    public int spriteNum = 0;
-
+    public BufferedImage axeUp1, axeUp2, axeDown1, axeDown2, axeLeft1, axeLeft2, axeRight1, axeRight2;
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
     public Rectangle toolArea = new Rectangle(0, 0, 36, 36);
     public int solidAreaDefaultX, solidAreaDefaultY;
-    public boolean collisionOn = false;
-    public int actionLockCounter = 0;
     String[] dialogues = new String[20];
-    int dialogueIndex = 0;
     public boolean collision = false;
+
+    // State
+    public int worldX, worldY;
+    public String direction = "down";
+    public int spriteNum = 0;
+    int dialogueIndex = 0;
+    public boolean collisionOn = false;
+    public boolean usingTool = false;
+
+    // Counter variables
+    public int spriteCounter = 0;
+    public int actionLockCounter = 0;
 
     // Character Attributes
     public String name;

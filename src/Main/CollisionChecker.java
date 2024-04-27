@@ -189,7 +189,7 @@ public class CollisionChecker {
     }
 
     public void checkPlayer(Entity entity) {
-// Get entity's solid area position
+        // Get entity's solid area position
         entity.solidArea.x += entity.worldX;
         entity.solidArea.y += entity.worldY;
 

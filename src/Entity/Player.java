@@ -43,6 +43,7 @@ public class Player extends Entity {
 
         setDefaultValues();
         getPlayerImage();
+        getPlayerAxeImage();
         setItems();
     }
 
@@ -105,8 +106,23 @@ public class Player extends Entity {
         up3 = setup("player/player16", gp.tileSize, gp.tileSize);
     }
 
+    public void getPlayerAxeImage() {
+        axeDown1 = setup("player/axe_swing_y1", gp.tileSize, gp.tileSize * 2);
+        axeDown2 = setup("player/axe_swing_y2", gp.tileSize, gp.tileSize * 2);
+        axeUp1 = setup("player/axe_swing_y3", gp.tileSize, gp.tileSize * 2);
+        axeUp2 = setup("player/axe_swing_y4", gp.tileSize, gp.tileSize * 2);
+        axeLeft1 = setup("player/axe_swing_x3", gp.tileSize * 2, gp.tileSize);
+        axeLeft2 = setup("player/axe_swing_x4", gp.tileSize * 2, gp.tileSize);
+        axeRight1 = setup("player/axe_swing_x1", gp.tileSize * 2, gp.tileSize);
+        axeRight2 = setup("player/axe_swing_x2", gp.tileSize * 2, gp.tileSize);
+
+    }
+
     public void update() {
-        if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.tPressed) {
+        if (usingTool) {
+            useTool();
+        }
+        else if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.tPressed) {
             gp.playSoundEffect(1);
             spriteCounter++;
             if (spriteCounter < 8) {
@@ -129,14 +145,14 @@ public class Player extends Entity {
         if (keyH.upPressed) {
             direction = "up";
         }
-        else if (keyH.downPressed) {
+        if (keyH.downPressed) {
             direction = "down";
         }
 
         if (keyH.leftPressed) {
             direction = "left";
         }
-        else if (keyH.rightPressed) {
+        if (keyH.rightPressed) {
             direction = "right";
         }
 
@@ -175,8 +191,25 @@ public class Player extends Entity {
         // We want to reset the t key being pressed afterwards
         gp.keyH.tPressed = false;
 
-        if (!keyH.upPressed && !keyH.downPressed && !keyH.leftPressed && !keyH.rightPressed) {
+        if (!keyH.upPressed && !keyH.downPressed && !keyH.leftPressed && !keyH.rightPressed && !usingTool) {
             spriteNum = 0;
+        }
+
+    }
+
+    public void useTool() {
+        spriteCounter++;
+
+        if (spriteCounter <= 5) {
+            spriteNum = 1;
+        }
+        if (spriteCounter > 5 && spriteCounter <= 25) {
+            spriteNum = 2;
+        }
+        if (spriteCounter > 25) {
+            spriteNum = 1;
+            spriteCounter = 0;
+            usingTool = false;
         }
 
     }
@@ -222,14 +255,43 @@ public class Player extends Entity {
                 gp.gameState = gp.dialogueState;
                 gp.npc[i].speak();
             }
-
+        }
+        else if (gp.keyH.ePressed) {
+            usingTool = true;
         }
     }
 
     public void draw(Graphics2D g2) {
-        BufferedImage image;
+        BufferedImage image = null;
 
-        image = getImageForDirectionAndSpriteNum(direction, spriteNum);
-        g2.drawImage(image, screenX, screenY, null);
+        int tempScreenX = screenX;
+        int tempScreenY = screenY;
+
+        if (usingTool) {
+            switch (direction) {
+                case "up" -> {
+                    tempScreenY = screenY - gp.tileSize;
+                    if (spriteNum == 1) image = axeUp1;
+                    if (spriteNum == 2) image = axeUp2;
+                }
+                case "down" -> {
+                    if (spriteNum == 1) image = axeDown1;
+                    if (spriteNum == 2) image = axeDown2;
+                }
+                case "left" -> {
+                    tempScreenX = screenX - gp.tileSize;
+                    if (spriteNum == 1) image = axeLeft1;
+                    if (spriteNum == 2) image = axeLeft2;
+                }
+                case "right" -> {
+                    if (spriteNum == 1) image = axeRight1;
+                    if (spriteNum == 2) image = axeRight2;
+                }
+            }
+        }
+        else {
+            image = getImageForDirectionAndSpriteNum(direction, spriteNum);
+        }
+        g2.drawImage(image, tempScreenX, tempScreenY, null);
     }
 }

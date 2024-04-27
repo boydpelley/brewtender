@@ -309,6 +309,9 @@ public class Player extends Entity {
             }
             if (selectedItem.type == type_consumable) {
                 // This will be implemented when we add consumables
+                selectedItem.use(this);
+                inventory.remove(itemIndex);
+                gp.gameState = gp.playState;
             }
 
         }

@@ -111,15 +111,26 @@ public class Player extends Entity {
     }
 
     public void getPlayerAxeImage() {
-        axeDown1 = setup("player/axe_swing_y1", gp.tileSize, gp.tileSize * 2);
-        axeDown2 = setup("player/axe_swing_y2", gp.tileSize, gp.tileSize * 2);
-        axeUp1 = setup("player/axe_swing_y3", gp.tileSize, gp.tileSize * 2);
-        axeUp2 = setup("player/axe_swing_y4", gp.tileSize, gp.tileSize * 2);
-        axeLeft1 = setup("player/axe_swing_x3", gp.tileSize * 2, gp.tileSize);
-        axeLeft2 = setup("player/axe_swing_x4", gp.tileSize * 2, gp.tileSize);
-        axeRight1 = setup("player/axe_swing_x1", gp.tileSize * 2, gp.tileSize);
-        axeRight2 = setup("player/axe_swing_x2", gp.tileSize * 2, gp.tileSize);
-
+        if (currentTool.type == type_std_axe) {
+            axeDown1 = setup("player/axe_swing_y1", gp.tileSize, gp.tileSize * 2);
+            axeDown2 = setup("player/axe_2_swing_y1", gp.tileSize, gp.tileSize * 2);
+            axeUp1 = setup("player/axe_swing_y3", gp.tileSize, gp.tileSize * 2);
+            axeUp2 = setup("player/axe_2_swing_y2", gp.tileSize, gp.tileSize * 2);
+            axeLeft1 = setup("player/axe_swing_x3", gp.tileSize * 2, gp.tileSize);
+            axeLeft2 = setup("player/axe_2_swing_x2", gp.tileSize * 2, gp.tileSize);
+            axeRight1 = setup("player/axe_swing_x1", gp.tileSize * 2, gp.tileSize);
+            axeRight2 = setup("player/axe_2_swing_x1", gp.tileSize * 2, gp.tileSize);
+        }
+        if (currentTool.type == type_upgraded_axe) {
+            axeDown1 = setup("player/axe_swing_y1", gp.tileSize, gp.tileSize * 2);
+            axeDown2 = setup("player/axe_swing_y2", gp.tileSize, gp.tileSize * 2);
+            axeUp1 = setup("player/axe_swing_y3", gp.tileSize, gp.tileSize * 2);
+            axeUp2 = setup("player/axe_swing_y4", gp.tileSize, gp.tileSize * 2);
+            axeLeft1 = setup("player/axe_swing_x3", gp.tileSize * 2, gp.tileSize);
+            axeLeft2 = setup("player/axe_swing_x4", gp.tileSize * 2, gp.tileSize);
+            axeRight1 = setup("player/axe_swing_x1", gp.tileSize * 2, gp.tileSize);
+            axeRight2 = setup("player/axe_swing_x2", gp.tileSize * 2, gp.tileSize);
+        }
     }
 
     public void update() {
@@ -294,6 +305,7 @@ public class Player extends Entity {
 
                 currentTool = selectedItem;
                 updateToolArea();
+                getPlayerAxeImage();
             }
             if (selectedItem.type == type_consumable) {
                 // This will be implemented when we add consumables

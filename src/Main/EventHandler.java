@@ -49,8 +49,8 @@ public class EventHandler {
 
 
         if (canTouchEvent) {
-            if (hit(35, 17, "any")) {
-
+            if (hit(34, 17, "any")) {
+                System.out.println("HIT");
                 interactForage(gp.droppable[0]);
 
             }

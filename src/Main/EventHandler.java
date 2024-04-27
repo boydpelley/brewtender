@@ -1,5 +1,8 @@
 package Main;
 
+import Entity.Entity;
+import Object.*;
+
 public class EventHandler {
 
     GamePanel gp;
@@ -46,20 +49,27 @@ public class EventHandler {
 
 
         if (canTouchEvent) {
-            if (hit(17, 35, "any")) interactForage();
-            if (hit(17, 35, "any")) interactForage();
+            if (hit(35, 17, "any")) {
+
+                interactForage(gp.droppable[0]);
+
+            }
+            if (hit(10, 23,
+                    "any")) interactForage(gp.droppable[1]);
         }
 
     }
 
-    public void interactForage() {
+    public void interactForage(Entity entity) {
         if (gp.keyH.qPressed) {
-
+            entity.dropItem(new OBJ_JuniperBunch(gp));
         }
         gp.keyH.qPressed = false;
     }
 
     public boolean hit(int col, int row, String reqDirection) {
+
+        boolean hit = false;
 
         gp.player.solidArea.x = gp.player.worldX + gp.player.solidArea.x;
         gp.player.solidArea.y = gp.player.worldY + gp.player.solidArea.y;
@@ -71,10 +81,15 @@ public class EventHandler {
                 previousEventX = gp.player.worldX;
                 previousEventY = gp.player.worldY;
 
-                return true;
+                hit = true;
             }
         }
 
-        return false;
+        gp.player.solidArea.x = gp.player.solidAreaDefaultX;
+        gp.player.solidArea.y = gp.player.solidAreaDefaultY;
+        eventRect[col][row].x = eventRect[col][row].eventRectDefaultX;
+        eventRect[col][row].y = eventRect[col][row].eventRectDefaultY;
+
+        return hit;
     }
 }

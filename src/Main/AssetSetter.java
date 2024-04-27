@@ -32,33 +32,25 @@ public class AssetSetter {
         gp.obj[1].worldX = 15 * gp.tileSize;
         gp.obj[1].worldY = 5 * gp.tileSize;
 
-        gp.obj[2] = new OBJ_JuniperBunch(gp);
-        gp.obj[2].worldX = 36 * gp.tileSize;
-        gp.obj[2].worldY = 17 * gp.tileSize;
+        gp.obj[2] = new OBJ_Axe_Std(gp);
+        gp.obj[2].worldX = 20 * gp.tileSize;
+        gp.obj[2].worldY = 20 * gp.tileSize;
 
-        gp.obj[3] = new OBJ_JuniperBunch(gp);
-        gp.obj[3].worldX = 9 * gp.tileSize;
-        gp.obj[3].worldY = 24 * gp.tileSize;
+        gp.obj[3] = new OBJ_Axe_Upgraded(gp);
+        gp.obj[3].worldX = 23 * gp.tileSize;
+        gp.obj[3].worldY = 18 * gp.tileSize;
 
-        gp.obj[4] = new OBJ_Axe_Std(gp);
-        gp.obj[4].worldX = 20 * gp.tileSize;
-        gp.obj[4].worldY = 20 * gp.tileSize;
+        gp.obj[4] = new OBJ_Domestic_Lager(gp);
+        gp.obj[4].worldX = 24 * gp.tileSize;
+        gp.obj[4].worldY = 19 * gp.tileSize;
 
-        gp.obj[5] = new OBJ_Axe_Upgraded(gp);
-        gp.obj[5].worldX = 23 * gp.tileSize;
-        gp.obj[5].worldY = 18 * gp.tileSize;
+        gp.obj[5] = new OBJ_Domestic_Lager(gp);
+        gp.obj[5].worldX = 24 * gp.tileSize;
+        gp.obj[5].worldY = 22 * gp.tileSize;
 
         gp.obj[6] = new OBJ_Domestic_Lager(gp);
-        gp.obj[6].worldX = 24 * gp.tileSize;
-        gp.obj[6].worldY = 19 * gp.tileSize;
-
-        gp.obj[7] = new OBJ_Domestic_Lager(gp);
-        gp.obj[7].worldX = 24 * gp.tileSize;
-        gp.obj[7].worldY = 22 * gp.tileSize;
-
-        gp.obj[8] = new OBJ_Domestic_Lager(gp);
-        gp.obj[8].worldX = 25 * gp.tileSize;
-        gp.obj[8].worldY = 24 * gp.tileSize;
+        gp.obj[6].worldX = 25 * gp.tileSize;
+        gp.obj[6].worldY = 24 * gp.tileSize;
 
     }
 

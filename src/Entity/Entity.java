@@ -89,7 +89,8 @@ public class Entity {
     public void checkDrop() {}
 
     public void dropItem(Entity droppedItem) {
-
+        droppedItem.worldX = this.worldX + 1;
+        droppedItem.worldY = this.worldY + 1;
     }
 
     public void update() {

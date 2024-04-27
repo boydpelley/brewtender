@@ -41,6 +41,10 @@ public class Player extends Entity {
         solidArea.width = 32;
         solidArea.height = 32;
 
+        // Destroy area for the player's axe
+        toolArea.width = 36;
+        toolArea.height = 36;
+
         setDefaultValues();
         getPlayerImage();
         getPlayerAxeImage();
@@ -205,6 +209,33 @@ public class Player extends Entity {
         }
         if (spriteCounter > 5 && spriteCounter <= 25) {
             spriteNum = 2;
+
+            //Save the current coords
+            int currentWorldX = worldX;
+            int currentWorldY = worldY;
+            int solidAreaWidth = solidArea.width;
+            int solidAreaHeight = solidArea.height;
+
+            // Adjust player's worldX/Y for the attackArea
+            switch (direction) {
+                case "up" -> worldY -= toolArea.height;
+                case "down" -> worldY += toolArea.height;
+                case "left" -> worldX -= toolArea.width;
+                case "right" -> worldX += toolArea.width;
+            }
+
+            solidArea.width = toolArea.width;
+            solidArea.height = toolArea.height;
+
+            // TODO: implement checking tree tiles
+            // int treeIndex = gp.cChecker.checkTile();
+
+            // Restore to original position
+            worldX = currentWorldX;
+            worldY = currentWorldY;
+            solidArea.width = solidAreaWidth;
+            solidArea.height = solidAreaHeight;
+
         }
         if (spriteCounter > 25) {
             spriteNum = 1;

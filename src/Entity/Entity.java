@@ -51,6 +51,14 @@ public class Entity {
     public int destroyValue;
     public String description = "";
 
+    // Type
+    public int type;
+    public final int type_player = 0;
+    public final int type_npc = 1;
+    public final int type_std_axe = 2;
+    public final int type_upgraded_axe = 3;
+    public final int type_consumable = 4;
+
     public Entity(GamePanel gp) {
         this.gp = gp;
     }

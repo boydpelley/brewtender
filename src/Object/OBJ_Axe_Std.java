@@ -8,6 +8,7 @@ public class OBJ_Axe_Std extends Entity {
     public OBJ_Axe_Std(GamePanel gp) {
         super(gp);
 
+        type = type_std_axe;
         name = "Standard Axe";
         down1 = setup("objects/axe_std", gp.tileSize, gp.tileSize);
         collision = true;

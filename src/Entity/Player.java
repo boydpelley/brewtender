@@ -284,6 +284,24 @@ public class Player extends Entity {
         }
     }
 
+    public void selectItem() {
+        int itemIndex = gp.ui.getItemIndexFromSlots();
+
+        if (itemIndex < inventory.size()) {
+            Entity selectedItem = inventory.get(itemIndex);
+
+            if (selectedItem.type == type_std_axe || selectedItem.type == type_upgraded_axe) {
+
+                currentTool = selectedItem;
+                updateToolArea();
+            }
+            if (selectedItem.type == type_consumable) {
+                // This will be implemented when we add consumables
+            }
+
+        }
+    }
+
     public void interactNPC(int i) {
         if (i != 999) {
             if (gp.keyH.tPressed) {

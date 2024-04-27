@@ -12,6 +12,8 @@ public class OBJ_Axe_Std extends Entity {
         down1 = setup("objects/axe_std", gp.tileSize, gp.tileSize);
         collision = true;
         destroyValue = 1;
+        toolArea.width = 36;
+        toolArea.height = 36;
         description = "A basic axe used for chopping \ntrees, when needed.";
     }
 }

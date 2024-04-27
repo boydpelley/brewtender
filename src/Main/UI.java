@@ -342,6 +342,11 @@ public class UI {
         // Draw items
         for (int i = 0; i < gp.player.inventory.size(); i++) {
 
+            if (gp.player.inventory.get(i) == gp.player.currentTool) {
+                g2.setColor(Color.PINK);
+                g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
+            }
+
             g2.drawImage(gp.player.inventory.get(i).down1, slotX, slotY, null);
 
             slotX += slotSize;

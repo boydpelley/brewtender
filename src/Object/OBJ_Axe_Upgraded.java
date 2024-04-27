@@ -12,6 +12,8 @@ public class OBJ_Axe_Upgraded extends Entity {
         down1 = setup("objects/upgraded_axe", gp.tileSize, gp.tileSize);
         collision = true;
         destroyValue = 2;
-        description = "An axe that brings an extra \n punch.";
+        toolArea.width = 40;
+        toolArea.height = 40;
+        description = "An axe that brings an extra \npunch.";
     }
 }

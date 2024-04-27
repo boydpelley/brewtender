@@ -245,6 +245,10 @@ public class Player extends Entity {
 
     }
 
+    public void updateToolArea() {
+        toolArea = currentTool.toolArea;
+    }
+
     public void pickupObject(int i) {
 
         if (i != 999) {

@@ -12,6 +12,18 @@ public class InteractiveTile extends Entity {
         this.gp = gp;
     }
 
+    public boolean isCorrectTool(Entity entity) {
+        return false;
+    }
+
+    public void playSE() {
+
+    }
+
+    public InteractiveTile getDestroyedForm() {
+        return null;
+    }
+
     public void update() {
 
     }

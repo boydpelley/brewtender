@@ -48,14 +48,19 @@ public class EventHandler {
         }
 
         if (canTouchEvent) {
-            if (hit(34, 17, "any") || hit(35, 16, "any")
-                    || hit(35, 18, "any") || hit(36, 17, "any")) {
+            if (checkSurroundingHit( (gp.droppable[0].worldX / gp.tileSize), (gp.droppable[0].worldY / gp.tileSize) )) {
                 System.out.println("HIT");
                 interactForage(gp.droppable[0]);
-
             }
-            if (hit(10, 23, "any")) interactForage(gp.droppable[1]);
+            if (checkSurroundingHit( (gp.droppable[1].worldX / gp.tileSize), (gp.droppable[1].worldY / gp.tileSize) )) {
+                interactForage(gp.droppable[1]);
+            }
         }
+    }
+
+    public boolean checkSurroundingHit(int col, int row) {
+        return (hit(col - 1, row, "any") || hit(col, row + 1, "any")
+                || hit(col, row - 1, "any") || hit(col + 1, row, "any"));
     }
 
     public void interactForage(Entity entity) {

@@ -3,6 +3,7 @@ package Main;
 import Entity.Entity;
 import Entity.Player;
 import Tile.TileManager;
+import Tile_Interactive.InteractiveTile;
 
 import javax.sound.sampled.*;
 import javax.swing.*;
@@ -47,6 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity[] npc = new Entity[10];
     public Entity[] droppable = new Entity[10];
     public Entity[] objDropped = new Entity[50];
+    public InteractiveTile[] iTile = new InteractiveTile[30];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
@@ -73,6 +75,7 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setDroppable();
         aSetter.setObject();
         aSetter.setNPC();
+        aSetter.setInteractiveTile();
         //music.playMusic(0);
         gameState = titleState;
     }
@@ -132,6 +135,12 @@ public class GamePanel extends JPanel implements Runnable {
                     entity.update();
                 }
             }
+
+            for (InteractiveTile t : iTile) {
+                if (t != null) {
+                    t.update();
+                }
+            }
         }
         /*
         if (gameState == pauseState) {
@@ -160,6 +169,13 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             // Tiles
             tileM.draw(g2);
+
+            // Interactive tiles
+            for (InteractiveTile tile : iTile) {
+                if (tile != null) {
+                    tile.draw(g2);
+                }
+            }
 
             // Add entities to the list
             entityList.add(player);

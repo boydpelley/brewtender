@@ -2,6 +2,7 @@ package Main;
 
 import Entity.NPC_Cop;
 import Object.*;
+import Tile_Interactive.IT_SmallTree;
 
 public class AssetSetter {
 
@@ -56,7 +57,30 @@ public class AssetSetter {
 
     public void setNPC() {
         gp.npc[0] = new NPC_Cop(gp);
-        gp.npc[0].worldX = gp.tileSize * 20;
-        gp.npc[0].worldY = gp.tileSize * 25;
+        gp.npc[0].worldX = 20 * gp.tileSize;
+        gp.npc[0].worldY = 25 * gp.tileSize;
+    }
+
+    public void setInteractiveTile() {
+
+        int i = 0;
+
+        gp.iTile[i] = new IT_SmallTree(gp, 9, 15);
+        i++;
+
+        gp.iTile[i] = new IT_SmallTree(gp, 10, 15);
+        i++;
+
+        gp.iTile[i] = new IT_SmallTree(gp, 11, 15);
+        i++;
+
+        gp.iTile[i] = new IT_SmallTree(gp, 12, 15);
+        i++;
+
+        gp.iTile[i] = new IT_SmallTree(gp, 13, 15);
+        i++;
+
+        gp.iTile[i] = new IT_SmallTree(gp, 14, 15);
+
     }
 }

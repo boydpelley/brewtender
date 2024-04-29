@@ -182,14 +182,15 @@ public class Player extends Entity {
         int objectIndex = gp.cChecker.checkObject(this, true, gp.obj);
         pickupObject(objectIndex, gp.obj);
 
-        // TODO : Make objDropped a static array, when items drop, add to next free index
+        // Check the droppable object collision
         objectIndex = gp.cChecker.checkObject(this, true, gp.objDropped);
         pickupObject(objectIndex, gp.objDropped);
-
 
         // Check NPC Collision
         int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
         interactNPC(npcIndex);
+
+        gp.cChecker.checkEntity(this, gp.iTile);
 
         // Check event
         gp.eventHandler.checkEvent();
@@ -246,8 +247,8 @@ public class Player extends Entity {
             solidArea.width = toolArea.width;
             solidArea.height = toolArea.height;
 
-            // TODO: implement checking tree tiles
-            // int treeIndex = gp.cChecker.checkTile();
+            int iTileIndex = gp.cChecker.checkEntity(this, gp.iTile);
+            damageInteractiveTile(iTileIndex);
 
             // Restore to original position
             worldX = currentWorldX;
@@ -262,6 +263,13 @@ public class Player extends Entity {
             usingTool = false;
         }
 
+    }
+
+    private void damageInteractiveTile(int i) {
+
+        if (i != 999 && gp.iTile[i].destructible) {
+            gp.iTile[i] = null;
+        }
     }
 
     public void updateToolArea() {

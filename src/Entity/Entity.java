@@ -89,8 +89,14 @@ public class Entity {
     public void checkDrop() {}
 
     public void dropItem(Entity droppedItem) {
-        droppedItem.worldX = this.worldX + 1;
-        droppedItem.worldY = this.worldY + 1;
+        droppedItem.worldX = this.worldX + gp.tileSize;
+        droppedItem.worldY = this.worldY + gp.tileSize;
+        for (int i = 0; i < gp.objDropped.length; i++) {
+            if (gp.objDropped[i] == null) {
+                gp.objDropped[i] = droppedItem;
+                break;
+            }
+        }
     }
 
     public void update() {

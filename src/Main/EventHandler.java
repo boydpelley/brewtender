@@ -47,17 +47,15 @@ public class EventHandler {
             canTouchEvent = true;
         }
 
-
         if (canTouchEvent) {
-            if (hit(34, 17, "any")) {
+            if (hit(34, 17, "any") || hit(35, 16, "any")
+                    || hit(35, 18, "any") || hit(36, 17, "any")) {
                 System.out.println("HIT");
                 interactForage(gp.droppable[0]);
 
             }
-            if (hit(10, 23,
-                    "any")) interactForage(gp.droppable[1]);
+            if (hit(10, 23, "any")) interactForage(gp.droppable[1]);
         }
-
     }
 
     public void interactForage(Entity entity) {

@@ -46,6 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity[] obj = new Entity[15];
     public Entity[] npc = new Entity[10];
     public Entity[] droppable = new Entity[10];
+    public Entity[] objDropped = new Entity[50];
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
@@ -176,6 +177,13 @@ public class GamePanel extends JPanel implements Runnable {
             }
 
             for (Entity ob : obj) {
+                if (ob != null) {
+                    entityList.add(ob);
+                }
+            }
+
+            // Add everything that exists in the objects dropped array
+            for (Entity ob : objDropped) {
                 if (ob != null) {
                     entityList.add(ob);
                 }

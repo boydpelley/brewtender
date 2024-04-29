@@ -180,7 +180,12 @@ public class Player extends Entity {
 
         // Check object collision for pickup
         int objectIndex = gp.cChecker.checkObject(this, true, gp.obj);
-        pickupObject(objectIndex);
+        pickupObject(objectIndex, gp.obj);
+
+        // TODO : Make objDropped a static array, when items drop, add to next free index
+        objectIndex = gp.cChecker.checkObject(this, true, gp.objDropped);
+        pickupObject(objectIndex, gp.objDropped);
+
 
         // Check NPC Collision
         int npcIndex = gp.cChecker.checkEntity(this, gp.npc);
@@ -263,16 +268,16 @@ public class Player extends Entity {
         toolArea = currentTool.toolArea;
     }
 
-    public void pickupObject(int i) {
+    public void pickupObject(int i, Entity[] list) {
 
         if (i != 999) {
             String text;
             if (inventory.size() != maxInventorySize) {
-                inventory.add(gp.obj[i]);
-                text = "Collected " + gp.obj[i].name + "!";
+                inventory.add(list[i]);
+                text = "Collected " + list[i].name + "!";
 
-                exp += gp.obj[i].exp;
-                foraging += gp.obj[i].exp;
+                exp += list[i].exp;
+                foraging += list[i].exp;
 
                 checkExpLevelUp();
                 checkForagingLevelUp();
@@ -280,7 +285,7 @@ public class Player extends Entity {
                 text = "Inventory full.";
             }
             gp.ui.addMessage(text);
-            gp.obj[i] = null;
+            list[i] = null;
         }
     }
 

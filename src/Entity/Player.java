@@ -267,7 +267,10 @@ public class Player extends Entity {
 
     private void damageInteractiveTile(int i) {
 
-        if (i != 999 && gp.iTile[i].destructible && gp.iTile[i].isCorrectTool(this)) {
+        if (i != 999 && gp.iTile[i].destructible && gp.iTile[i].isCorrectTool(this)
+        && !gp.iTile[i].invincible) {
+            gp.iTile[i].life -= currentTool.destroyValue;
+            gp.iTile[i].invincible = true;
             gp.iTile[i] = gp.iTile[i].getDestroyedForm();
         }
     }

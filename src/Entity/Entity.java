@@ -50,6 +50,9 @@ public class Entity {
     // Item Attributes
     public int destroyValue;
     public String description = "";
+    public int life;
+    public boolean invincible = false;
+    public int invincibleCounter = 0;
 
     // Type
     public int type;
@@ -134,6 +137,14 @@ public class Entity {
         }
         if (spriteCounter >= 40) {
             spriteCounter = 0;
+        }
+
+        if (invincible) {
+            invincibleCounter++;
+            if (invincibleCounter > 40) {
+                invincible = false;
+                invincibleCounter = 0;
+            }
         }
     }
 

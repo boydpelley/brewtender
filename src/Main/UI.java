@@ -68,6 +68,11 @@ public class UI {
             drawCharacterStatScreen();
             drawInventory();
         }
+
+        // Options state
+        if (gp.gameState == gp.optionsState) {
+            drawOptionsScreen();
+        }
     }
 
     public void drawMessage() {
@@ -127,7 +132,7 @@ public class UI {
 
         String text = "NEW GAME";
         x = getXCenteredText(text);
-        y += gp.tileSize * 5;
+        y += gp.tileSize * 4;
         g2.drawString(text, x, y);
         if (commandNum == 0) {
             g2.drawString(">", x - gp.tileSize, y);
@@ -310,6 +315,18 @@ public class UI {
         textX = getXForRightAlign(value, tailX);
         g2.drawString(value, textX, textY);
 
+    }
+
+    public void drawOptionsScreen() {
+        g2.setColor(Color.WHITE);
+        g2.setFont(g2.getFont().deriveFont(25F));
+
+        //Sub window
+        int frameX = gp.tileSize * 6;
+        int frameY = gp.tileSize;
+        int frameWidth = gp.tileSize * 8;
+        int frameHeight = gp.tileSize * 10;
+        drawSubWindow(frameX, frameY, frameWidth, frameHeight);
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {

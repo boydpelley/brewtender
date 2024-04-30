@@ -4,12 +4,13 @@ import Entity.Entity;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Optional;
 
 public class KeyHandler implements KeyListener {
 
     GamePanel gp;
     public boolean upPressed, downPressed, leftPressed, rightPressed,
-            tPressed, ePressed, qPressed;
+            tPressed, ePressed, qPressed, enterPressed;
 
     // Debug
     boolean showDebug = false;
@@ -50,6 +51,11 @@ public class KeyHandler implements KeyListener {
         // While in Character Stats State
         else if (gp.gameState == gp.characterState) {
             characterState(code);
+        }
+
+        // While in options state
+        else if (gp.gameState == gp.optionsState) {
+            optionsState(code);
         }
 
     }
@@ -110,6 +116,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_C) {
             gp.gameState = gp.characterState;
         }
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.optionsState;
+        }
 
         // Debugging
         if (code == KeyEvent.VK_R) {
@@ -155,6 +164,16 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ENTER) {
             gp.player.selectItem();
+        }
+    }
+
+    public void optionsState(int code) {
+
+        if (code == KeyEvent.VK_ESCAPE) {
+            gp.gameState = gp.playState;
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
         }
     }
 

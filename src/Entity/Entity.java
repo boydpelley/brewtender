@@ -26,6 +26,7 @@ public class Entity {
     int dialogueIndex = 0;
     public boolean collisionOn = false;
     public boolean usingTool = false;
+    public boolean active = true;
 
     // Counter variables
     public int spriteCounter = 0;
@@ -50,6 +51,7 @@ public class Entity {
     // Item Attributes
     public int destroyValue;
     public String description = "";
+    public int maxLife;
     public int life;
     public boolean invincible = false;
     public int invincibleCounter = 0;
@@ -100,6 +102,38 @@ public class Entity {
                 break;
             }
         }
+    }
+
+    public Color getParticleColor() {
+        return new Color(0, 0, 0);
+    }
+    public int getParticleSize() {
+        return 0;
+    }
+
+    public int getParticleSpeed() {
+        return 0;
+    }
+
+    public int getParticleMaxLife() {
+        return 0;
+    }
+
+    public void generateParticle(Entity generator, Entity target) {
+
+        Color color = generator.getParticleColor();
+        int size = generator.getParticleSize();
+        int speed = generator.getParticleSpeed();
+        int maxLife = generator.getParticleMaxLife();
+
+        Particle p1 = new Particle(gp, generator, color, size, speed, maxLife, -1, -1);
+        Particle p2 = new Particle(gp, generator, color, size, speed, maxLife, 1, -1);
+        Particle p3 = new Particle(gp, generator, color, size, speed, maxLife, -1, 1);
+        Particle p4 = new Particle(gp, generator, color, size, speed, maxLife, 1, 1);
+        gp.particleList.add(p1);
+        gp.particleList.add(p2);
+        gp.particleList.add(p3);
+        gp.particleList.add(p4);
     }
 
     public void update() {

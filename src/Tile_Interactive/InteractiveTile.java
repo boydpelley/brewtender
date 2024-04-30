@@ -3,6 +3,8 @@ package Tile_Interactive;
 import Entity.Entity;
 import Main.GamePanel;
 
+import java.awt.*;
+
 public class InteractiveTile extends Entity {
     GamePanel gp;
     public boolean destructible = false;
@@ -33,4 +35,22 @@ public class InteractiveTile extends Entity {
             }
         }
     }
+
+
+    public Color getParticleColor() {
+        return new Color(65, 45, 30);
+    }
+
+    public int getParticleSize() {
+        return 6;
+    }
+
+    public int getParticleSpeed() {
+        return 1;
+    }
+
+    public int getParticleMaxLife() {
+        return 20;
+    }
+
 }

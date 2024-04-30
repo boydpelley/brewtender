@@ -271,7 +271,13 @@ public class Player extends Entity {
         && !gp.iTile[i].invincible) {
             gp.iTile[i].life -= currentTool.destroyValue;
             gp.iTile[i].invincible = true;
-            gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+
+            // Generate particle
+            generateParticle(gp.iTile[i], gp.iTile[i]);
+
+            if (gp.iTile[i].life == 0) {
+                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+            }
         }
     }
 

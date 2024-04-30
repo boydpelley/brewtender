@@ -49,6 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Entity[] droppable = new Entity[10];
     public Entity[] objDropped = new Entity[50];
     public InteractiveTile[] iTile = new InteractiveTile[30];
+    public ArrayList<Entity> particleList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
     // Game State
@@ -141,6 +142,17 @@ public class GamePanel extends JPanel implements Runnable {
                     t.update();
                 }
             }
+
+            for (int i = 0; i < particleList.size(); i++) {
+                if (particleList.get(i) != null) {
+                    if (particleList.get(i).active) {
+                        particleList.get(i).update();
+                    }
+                    if (!particleList.get(i).active) {
+                        particleList.remove(i);
+                    }
+                }
+            }
         }
         /*
         if (gameState == pauseState) {
@@ -202,6 +214,12 @@ public class GamePanel extends JPanel implements Runnable {
             for (Entity ob : objDropped) {
                 if (ob != null) {
                     entityList.add(ob);
+                }
+            }
+
+            for (Entity p : particleList) {
+                if (p != null) {
+                    entityList.add(p);
                 }
             }
 

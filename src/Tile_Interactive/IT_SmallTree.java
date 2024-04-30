@@ -3,6 +3,8 @@ package Tile_Interactive;
 import Entity.Entity;
 import Main.GamePanel;
 
+import java.awt.*;
+
 public class IT_SmallTree extends InteractiveTile {
 
     GamePanel gp;

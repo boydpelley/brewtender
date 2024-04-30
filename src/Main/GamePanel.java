@@ -8,6 +8,7 @@ import Tile_Interactive.InteractiveTile;
 import javax.sound.sampled.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -19,14 +20,19 @@ public class GamePanel extends JPanel implements Runnable {
 
     public final int tileSize = originalTileSize * scale; // 48 x 48 tile
     public final int maxScreenCol = 20;
-    public final int maxScreenRow = 15;
-    // Screen ratio would be 4:3
+    public final int maxScreenRow = 12;
+    // Screen ratio would be 16:9
     public final int screenWidth = tileSize * maxScreenCol; // 960 pixels
-    public final int screenHeight = tileSize * maxScreenRow; // 720 pixels
+    public final int screenHeight = tileSize * maxScreenRow; // 576 pixels
 
     // WORLD SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
+    // FULL SCREEN SETTINGS
+    int screenWidth2 = screenWidth;
+    int screenHeight2 = screenHeight;
+    BufferedImage tempScreen;
+    Graphics2D g2;
 
     // FPS
     int FPS = 60;
@@ -79,6 +85,23 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setInteractiveTile();
         //music.playMusic(0);
         gameState = titleState;
+
+        tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
+        g2 = (Graphics2D)tempScreen.getGraphics();
+
+        setFullScreen();
+    }
+
+    public void setFullScreen() {
+
+        // Get local screen device
+        GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
+        GraphicsDevice gd = ge.getDefaultScreenDevice();
+        gd.setFullScreenWindow(Main.window);
+
+        // Get full screen width and height
+        screenWidth2 = Main.window.getWidth();
+        screenHeight2 = Main.window.getHeight();
     }
 
     public void startGameThread() {
@@ -99,7 +122,10 @@ public class GamePanel extends JPanel implements Runnable {
 
             update();
 
-            repaint();
+            drawToTempScreen(); // This draws everything to buffered image
+            drawToScreen(); // Drw the buffered image to the screen
+            // NOTE: FOR GETTING OUT OF FULL SCREEN
+            //repaint();
 
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
@@ -159,6 +185,104 @@ public class GamePanel extends JPanel implements Runnable {
             // Nothing for now
         }
          */
+
+    }
+
+    public void drawToTempScreen() {
+
+        // Debugging
+        long drawStart = 0;
+        if (keyH.showDebug) {
+            drawStart = System.nanoTime();
+        }
+
+        // Title screen
+        if (gameState == titleState) {
+            ui.draw(g2);
+        }
+        else {
+            // Tiles
+            tileM.draw(g2);
+
+            // Interactive tiles
+            for (InteractiveTile tile : iTile) {
+                if (tile != null) {
+                    tile.draw(g2);
+                }
+            }
+
+            // Add entities to the list
+            entityList.add(player);
+
+            for (Entity n : npc) {
+                if (n != null) {
+                    entityList.add(n);
+                }
+            }
+
+            for (Entity drop : droppable) {
+                if (drop != null) {
+                    entityList.add(drop);
+                }
+            }
+
+            for (Entity ob : obj) {
+                if (ob != null) {
+                    entityList.add(ob);
+                }
+            }
+
+            // Add everything that exists in the objects dropped array
+            for (Entity ob : objDropped) {
+                if (ob != null) {
+                    entityList.add(ob);
+                }
+            }
+
+            for (Entity p : particleList) {
+                if (p != null) {
+                    entityList.add(p);
+                }
+            }
+
+            // Sort the list by the worldY position
+            entityList.sort(Comparator.comparingInt(e -> e.worldY));
+
+            // Draw entities
+            for (Entity entity : entityList) {
+                entity.draw(g2);
+            }
+
+            // Empty entity list because their positions may change
+            entityList.clear();
+
+            // UI
+            ui.draw(g2);
+        }
+
+        // For debugging
+        if (keyH.showDebug) {
+            long drawEnd = System.nanoTime();
+            long passed = drawEnd - drawStart;
+
+            g2.setFont(new Font("Arial", Font.PLAIN, 20));
+            g2.setColor(Color.WHITE);
+            int x = 10;
+            int y = 400;
+            int lineHeight = 20;
+
+            g2.drawString("WorldX: " + player.worldX, x, y);
+            y += lineHeight;
+            g2.drawString("WorldY: " + player.worldY, x, y);
+            y += lineHeight;
+
+            g2.drawString("Col: " + (player.worldX + player.solidArea.x) / tileSize, x, y);
+            y += lineHeight;
+            g2.drawString("Row: " + (player.worldY + player.solidArea.y) / tileSize, x, y);
+            y += lineHeight;
+
+            g2.drawString("Draw Time: " + passed, x, y);
+        }
 
     }
 
@@ -266,6 +390,11 @@ public class GamePanel extends JPanel implements Runnable {
         g2.dispose();
     }
 
+    public void drawToScreen() {
+        Graphics g = getGraphics();
+        g.drawImage(tempScreen, 0, 0, screenWidth2, screenHeight2, null);
+        g.dispose();
+    }
 
     public void playSoundEffect(int i) {
         if (!sound.isPlaying) {

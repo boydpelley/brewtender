@@ -89,6 +89,7 @@ public class GamePanel extends JPanel implements Runnable {
         tempScreen = new BufferedImage(screenWidth, screenHeight, BufferedImage.TYPE_INT_ARGB);
         g2 = (Graphics2D)tempScreen.getGraphics();
 
+        // TO DISABLE FULL SCREEN, COMMENT OUT THIS CODE
         setFullScreen();
     }
 
@@ -124,8 +125,6 @@ public class GamePanel extends JPanel implements Runnable {
 
             drawToTempScreen(); // This draws everything to buffered image
             drawToScreen(); // Drw the buffered image to the screen
-            // NOTE: FOR GETTING OUT OF FULL SCREEN
-            //repaint();
 
             try {
                 double remainingTime = nextDrawTime - System.nanoTime();
@@ -180,12 +179,6 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
         }
-        /*
-        if (gameState == pauseState) {
-            // Nothing for now
-        }
-         */
-
     }
 
     public void drawToTempScreen() {
@@ -284,110 +277,6 @@ public class GamePanel extends JPanel implements Runnable {
             g2.drawString("Draw Time: " + passed, x, y);
         }
 
-    }
-
-    public void paintComponent(Graphics g) {
-
-        super.paintComponent(g);
-
-        Graphics2D g2 = (Graphics2D)g;
-
-        // Debugging
-        long drawStart = 0;
-        if (keyH.showDebug) {
-            drawStart = System.nanoTime();
-        }
-
-        // Title screen
-        if (gameState == titleState) {
-            ui.draw(g2);
-        }
-        else {
-            // Tiles
-            tileM.draw(g2);
-
-            // Interactive tiles
-            for (InteractiveTile tile : iTile) {
-                if (tile != null) {
-                    tile.draw(g2);
-                }
-            }
-
-            // Add entities to the list
-            entityList.add(player);
-
-            for (Entity n : npc) {
-                if (n != null) {
-                    entityList.add(n);
-                }
-            }
-
-            for (Entity drop : droppable) {
-                if (drop != null) {
-                    entityList.add(drop);
-                }
-            }
-
-            for (Entity ob : obj) {
-                if (ob != null) {
-                    entityList.add(ob);
-                }
-            }
-
-            // Add everything that exists in the objects dropped array
-            for (Entity ob : objDropped) {
-                if (ob != null) {
-                    entityList.add(ob);
-                }
-            }
-
-            for (Entity p : particleList) {
-                if (p != null) {
-                    entityList.add(p);
-                }
-            }
-
-            // Sort the list by the worldY position
-            entityList.sort(Comparator.comparingInt(e -> e.worldY));
-
-            // Draw entities
-            for (Entity entity : entityList) {
-                entity.draw(g2);
-            }
-
-            // Empty entity list because their positions may change
-            entityList.clear();
-
-            // UI
-            ui.draw(g2);
-        }
-
-        // For debugging
-        if (keyH.showDebug) {
-            long drawEnd = System.nanoTime();
-            long passed = drawEnd - drawStart;
-
-            g2.setFont(new Font("Arial", Font.PLAIN, 20));
-            g2.setColor(Color.WHITE);
-            int x = 10;
-            int y = 400;
-            int lineHeight = 20;
-
-            g2.drawString("WorldX: " + player.worldX, x, y);
-            y += lineHeight;
-            g2.drawString("WorldY: " + player.worldY, x, y);
-            y += lineHeight;
-
-            g2.drawString("Col: " + (player.worldX + player.solidArea.x) / tileSize, x, y);
-            y += lineHeight;
-            g2.drawString("Row: " + (player.worldY + player.solidArea.y) / tileSize, x, y);
-            y += lineHeight;
-
-            g2.drawString("Draw Time: " + passed, x, y);
-        }
-
-
-        g2.dispose();
     }
 
     public void drawToScreen() {

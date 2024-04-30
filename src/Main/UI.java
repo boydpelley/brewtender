@@ -18,6 +18,7 @@ public class UI {
     public int commandNum = 0;
     public int slotRow = 0;
     public int slotCol = 0;
+    int subState = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -327,6 +328,70 @@ public class UI {
         int frameWidth = gp.tileSize * 8;
         int frameHeight = gp.tileSize * 10;
         drawSubWindow(frameX, frameY, frameWidth, frameHeight);
+
+        switch (subState) {
+            case 0 -> {
+                optionsTop(frameX, frameY);
+                break;
+            }
+            case 1 -> {
+
+            }
+            case 2 -> {
+
+            }
+        }
+    }
+
+    public void optionsTop (int frameX, int frameY) {
+        // Title
+        String text = "Options";
+        int textX = getXCenteredText(text);
+        int textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        // Full screen on / off
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize * 2;
+        g2.drawString("Full Screen", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString( ">", textX - 25, textY);
+        }
+
+        // Music
+        textY += gp.tileSize;
+        g2.drawString("Music", textX, textY);
+        if (commandNum == 1) {
+            g2.drawString( ">", textX - 25, textY);
+        }
+
+        // Sound Effects
+        textY += gp.tileSize;
+        g2.drawString("Sound Effects", textX, textY);
+        if (commandNum == 2) {
+            g2.drawString( ">", textX - 25, textY);
+        }
+
+        // Controls
+        textY += gp.tileSize;
+        g2.drawString("Controls", textX, textY);
+        if (commandNum == 3) {
+            g2.drawString( ">", textX - 25, textY);
+        }
+
+        // End Game
+        textY += gp.tileSize;
+        g2.drawString("End Game", textX, textY);
+        if (commandNum == 4) {
+            g2.drawString( ">", textX - 25, textY);
+        }
+
+        // Back
+        textY += gp.tileSize * 2;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 5) {
+            g2.drawString( ">", textX - 25, textY);
+        }
     }
 
     public void drawSubWindow(int x, int y, int width, int height) {

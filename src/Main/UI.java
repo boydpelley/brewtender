@@ -338,7 +338,7 @@ public class UI {
                 optionsFullScreenNotification(frameX, frameY);
             }
             case 2 -> {
-
+                optionsControls(frameX, frameY);
             }
         }
 
@@ -388,6 +388,10 @@ public class UI {
         g2.drawString("Controls", textX, textY);
         if (commandNum == 3) {
             g2.drawString( ">", textX - 25, textY);
+            if (gp.keyH.enterPressed) {
+                subState = 2;
+                commandNum = 0;
+            }
         }
 
         // End Game
@@ -440,6 +444,45 @@ public class UI {
         }
 
         // Back
+        textY = frameY + gp.tileSize * 9;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.keyH.enterPressed) subState = 0;
+        }
+    }
+
+    public void optionsControls(int frameX, int frameY) {
+        String text = "Controls";
+        int textX = getXCenteredText(text);
+        int textY = frameY + gp.tileSize;
+        g2.drawString(text, textX, textY);
+
+        g2.setFont(g2.getFont().deriveFont(19F));
+        textX = frameX + gp.tileSize;
+        textY += gp.tileSize;
+        g2.drawString("Move", textX, textY); textY += 35;
+        g2.drawString("Confirm", textX, textY); textY += 35;
+        g2.drawString("Use tool", textX, textY); textY += 35;
+        g2.drawString("Interact Forage", textX, textY); textY += 35;
+        g2.drawString("Talk", textX, textY); textY += 35;
+        g2.drawString("Character Screen", textX, textY); textY += 35;
+        g2.drawString("Pause", textX, textY); textY += 35;
+        g2.drawString("Options", textX, textY);
+
+        textX = frameX + gp.tileSize * 6;
+        textY = frameY + gp.tileSize * 2;
+        g2.drawString("WASD", textX, textY); textY += 35;
+        g2.drawString("Enter", textX, textY); textY += 35;
+        g2.drawString("E", textX, textY); textY += 35;
+        g2.drawString("Q", textX, textY); textY += 35;
+        g2.drawString("T", textX, textY); textY += 35;
+        g2.drawString("C", textX, textY); textY += 35;
+        g2.drawString("P", textX, textY); textY += 35;
+        g2.drawString("Esc", textX, textY);
+
+        g2.setFont(g2.getFont().deriveFont(25F));
+        textX = frameX + gp.tileSize;
         textY = frameY + gp.tileSize * 9;
         g2.drawString("Back", textX, textY);
         if (commandNum == 0) {

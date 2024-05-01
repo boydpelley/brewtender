@@ -335,12 +335,14 @@ public class UI {
                 break;
             }
             case 1 -> {
-
+                optionsFullScreenNotification(frameX, frameY);
             }
             case 2 -> {
 
             }
         }
+
+        gp.keyH.enterPressed = false;
     }
 
     public void optionsTop (int frameX, int frameY) {
@@ -356,6 +358,15 @@ public class UI {
         g2.drawString("Full Screen", textX, textY);
         if (commandNum == 0) {
             g2.drawString( ">", textX - 25, textY);
+            if (gp.keyH.enterPressed) {
+                if (!gp.fullScreenOn) {
+                    gp.fullScreenOn = true;
+                }
+                else if (gp.fullScreenOn) {
+                    gp.fullScreenOn = false;
+                }
+                subState = 1;
+            }
         }
 
         // Music
@@ -367,7 +378,7 @@ public class UI {
 
         // Sound Effects
         textY += gp.tileSize;
-        g2.drawString("Sound Effects", textX, textY);
+        g2.drawString("SE", textX, textY);
         if (commandNum == 2) {
             g2.drawString( ">", textX - 25, textY);
         }
@@ -391,6 +402,49 @@ public class UI {
         g2.drawString("Back", textX, textY);
         if (commandNum == 5) {
             g2.drawString( ">", textX - 25, textY);
+        }
+
+        // Full screen check box
+        textX = frameX + gp.tileSize * 6;
+        textY = frameY + gp.tileSize * 2 + (gp.tileSize / 2);
+        g2.setStroke(new BasicStroke(3));
+        g2.drawRect(textX, textY, 24, 24);
+        if (gp.fullScreenOn) {
+            g2.fillRect(textX, textY, 24, 24);
+        }
+
+        // Music Volume
+        textX = frameX + gp.tileSize * 5;
+        textY += gp.tileSize;
+        g2.drawRect(textX, textY, 120, 24); // 120/5 = 24
+        int volumeWidth = 24 * gp.music.volumeScale;
+        g2.fillRect(textX, textY, volumeWidth, 24);
+
+        // Sound Effect volume
+        textY += gp.tileSize;
+        g2.drawRect(textX, textY, 120, 24);
+        volumeWidth = 24 * gp.sound.volumeScale;
+        g2.fillRect(textX, textY, volumeWidth, 24);
+    }
+
+    public void optionsFullScreenNotification(int frameX, int frameY) {
+
+        int textX = frameX + gp.tileSize;
+        int textY = frameY + gp.tileSize * 3;
+
+        currentDialogue = "The change will \ntake effect after \nrelaunching the \ngame.";
+
+        for (String line : currentDialogue.split("\n")) {
+            g2.drawString(line, textX, textY);
+            textY += 40;
+        }
+
+        // Back
+        textY = frameY + gp.tileSize * 9;
+        g2.drawString("Back", textX, textY);
+        if (commandNum == 0) {
+            g2.drawString(">", textX - 25, textY);
+            if (gp.keyH.enterPressed) subState = 0;
         }
     }
 

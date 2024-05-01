@@ -184,6 +184,31 @@ public class KeyHandler implements KeyListener {
             gp.ui.commandNum++;
             if (gp.ui.commandNum > 5) gp.ui.commandNum = 0;
         }
+
+        if (code == KeyEvent.VK_A) {
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNum == 1 && gp.music.volumeScale > 0) {
+                    gp.music.volumeScale--;
+                    gp.music.checkVolume();
+                }
+                if (gp.ui.commandNum == 2 && gp.sound.volumeScale > 0) {
+                    gp.sound.volumeScale--;
+                    gp.sound.checkVolume();
+                }
+            }
+        }
+        if (code == KeyEvent.VK_D) {
+            if (gp.ui.subState == 0) {
+                if (gp.ui.commandNum == 1 && gp.music.volumeScale < 5) {
+                    gp.music.volumeScale++;
+                    gp.music.checkVolume();
+                }
+                if (gp.ui.commandNum == 2 && gp.sound.volumeScale < 5) {
+                    gp.sound.volumeScale++;
+                    gp.sound.checkVolume();
+                }
+            }
+        }
     }
 
     @Override

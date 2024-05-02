@@ -20,7 +20,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[10];
+        tile = new Tile[50];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("maps/temp_world_map.txt");
@@ -34,6 +34,8 @@ public class TileManager {
         setup(4, "stone_wall2", true);
         setup(5, "trees2", true);
         setup(6, "trees3", true);
+
+        setup(10, "grass/grass", false);
     }
 
     public void setup(int index, String imageName, boolean collision) {

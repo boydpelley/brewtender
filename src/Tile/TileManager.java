@@ -30,12 +30,52 @@ public class TileManager {
         setup(0, "grass", false);
         setup(1, "stone", false);
         setup(2, "water", true);
-        setup(3, "stone_wall1", true);
-        setup(4, "stone_wall2", true);
+        setup(30, "stone_wall1", true);
+        setup(31, "stone_wall2", true);
         setup(5, "trees2", true);
         setup(6, "trees3", true);
 
         setup(10, "grass/grass", false);
+        setup(11, "grass/grass_var1", false);
+        setup(12, "grass/grass_var2", false);
+        setup(13, "grass/grass_var3", false);
+        setup(14, "grass/grass_var4", false);
+
+        setup(15, "grass/grass_bl", false);
+        setup(16, "grass/grass_bottom", false);
+        setup(17, "grass/grass_br", false);
+        setup(18, "grass/grass_left", false);
+
+        setup(19, "grass/grass_o_bl", false);
+        setup(20, "grass/grass_o_blb", false);
+        setup(21, "grass/grass_o_bld", false);
+        setup(22, "grass/grass_o_bll", false);
+
+        setup(23, "grass/grass_o_br", false);
+        setup(24, "grass/grass_o_brb", false);
+        setup(25, "grass/grass_o_brd", false);
+        setup(26, "grass/grass_o_brr", false);
+
+        setup(27, "grass/grass_o_tl", false);
+        setup(28, "grass/grass_o_tld", false);
+        setup(29, "grass/grass_o_tll", false);
+        setup(30, "grass/grass_o_tlt", false);
+
+        setup(31, "grass/grass_o_tr", false);
+        setup(32, "grass/grass_o_trd", false);
+        setup(33, "grass/grass_o_trr", false);
+        setup(34, "grass/grass_o_trt", false);
+
+        setup(35, "grass/grass_right", false);
+        setup(36, "grass/grass_tl", false);
+        setup(37, "grass/grass_top", false);
+        setup(38, "grass/grass_tr", false);
+
+        setup(39, "dirt/dirt", false);
+        setup(40, "dirt/dirt1", false);
+        setup(41, "dirt/dirt2", false);
+        setup(42, "dirt/dirt3", false);
+        setup(43, "dirt/dirt4", false);
     }
 
     public void setup(int index, String imageName, boolean collision) {

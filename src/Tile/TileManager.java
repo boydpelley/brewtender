@@ -27,13 +27,6 @@ public class TileManager {
     }
 
     public void getTileImage() {
-        setup(0, "grass", false);
-        setup(1, "stone", false);
-        setup(2, "water", true);
-        setup(30, "stone_wall1", true);
-        setup(31, "stone_wall2", true);
-        setup(5, "trees2", true);
-        setup(6, "trees3", true);
 
         setup(10, "grass/grass", false);
         setup(11, "grass/grass_var1", false);
@@ -76,6 +69,14 @@ public class TileManager {
         setup(41, "dirt/dirt2", false);
         setup(42, "dirt/dirt3", false);
         setup(43, "dirt/dirt4", false);
+
+        setup(0, "grass", false);
+        setup(1, "stone", false);
+        setup(2, "water", true);
+        setup(44, "stone_wall1", true);
+        setup(45, "stone_wall2", true);
+        setup(5, "trees2", true);
+        setup(6, "trees3", true);
     }
 
     public void setup(int index, String imageName, boolean collision) {

@@ -20,7 +20,7 @@ public class TileManager {
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
-        tile = new Tile[50];
+        tile = new Tile[99];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
         loadMap("maps/temp_world_map.txt");
@@ -28,6 +28,7 @@ public class TileManager {
 
     public void getTileImage() {
 
+        // Grass textures
         setup(10, "grass/grass", false);
         setup(11, "grass/grass_var1", false);
         setup(12, "grass/grass_var2", false);
@@ -70,11 +71,29 @@ public class TileManager {
         setup(42, "dirt/dirt3", false);
         setup(43, "dirt/dirt4", false);
 
+        // Stone Boundaries
+        setup(44, "stone_wall1", true);
+        setup(45, "stone_wall2", true);
+
+        // Water Textures
+        setup(46, "water/water", true);
+        setup(47, "water/water1", true);
+        setup(48, "water/water2", true);
+        setup(49, "water/water3", true);
+
+        setup(50, "water/water_bl", true);
+        setup(51, "water/water_bottom", true);
+        setup(52, "water/water_br", true);
+        setup(53, "water/water_left", true);
+        setup(54, "water/water_right", true);
+        setup(55, "water/water_tl", true);
+        setup(56, "water/water_top", true);
+        setup(57, "water/water_tr", true);
+
+
         setup(0, "grass", false);
         setup(1, "stone", false);
         setup(2, "water", true);
-        setup(44, "stone_wall1", true);
-        setup(45, "stone_wall2", true);
         setup(5, "trees2", true);
         setup(6, "trees3", true);
     }

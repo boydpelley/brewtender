@@ -23,79 +23,86 @@ public class TileManager {
         tile = new Tile[99];
         mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/temp_world_map.txt");
+        loadMap("maps/world_map_01.txt");
     }
 
     public void getTileImage() {
 
-        // Grass textures
-        setup(10, "grass/grass", false);
-        setup(11, "grass/grass_var1", false);
-        setup(12, "grass/grass_var2", false);
-        setup(13, "grass/grass_var3", false);
-        setup(14, "grass/grass_var4", false);
+        setup(0, "000", false);
+        setup(1, "001", false);
+        setup(2, "002", false);
+        setup(3, "003", false);
+        setup(4, "004", false);
+        setup(5, "005", false);
+        setup(6, "006", false);
+        setup(7, "007", false);
+        setup(8, "008", false);
+        setup(9, "009", false);
+        setup(10, "010", false);
+        setup(11, "011", false);
+        setup(12, "012", false);
+        setup(13, "013", false);
+        setup(14, "014", false);
+        setup(15, "015", false);
+        setup(16, "016", false);
+        setup(17, "017", false);
+        setup(18, "018", false);
+        setup(19, "019", false);
+        setup(20, "020", false);
+        setup(21, "021", false);
+        setup(22, "022", false);
+        setup(23, "023", false);
+        setup(24, "024", false);
+        setup(25, "025", false);
+        setup(26, "026", false);
+        setup(27, "027", false);
+        setup(28, "028", false);
+        setup(29, "029", false);
+        setup(30, "030", false);
+        setup(31, "031", false);
+        setup(32, "032", false);
+        setup(33, "033", false);
+        setup(34, "034", true);
+        setup(35, "035", true);
+        setup(36, "036", true);
+        setup(37, "037", true);
+        setup(38, "038", true);
+        setup(39, "039", true);
+        setup(40, "040", true);
+        setup(41, "041", true);
+        setup(42, "042", true);
+        setup(43, "043", true);
+        setup(44, "044", true);
+        setup(45, "045", true);
+        setup(46, "046", true);
+        setup(47, "047", true);
+        setup(48, "048", true);
+        setup(49, "049", true);
+        setup(50, "050", true);
+        setup(51, "051", true);
+        setup(52, "052", true);
+        setup(53, "053", true);
+        setup(54, "054", false);
+        setup(55, "055", true);
+        setup(56, "056", true);
+        setup(57, "057", true);
+        setup(58, "058", false);
+        setup(59, "059", false);
+        setup(60, "060", true);
+        setup(61, "061", true);
+        setup(62, "062", true);
+        setup(63, "063", false);
+        setup(64, "064", true);
+        setup(65, "065", true);
+        setup(66, "066", true);
+        setup(67, "067", false);
+        setup(68, "068", false);
+        setup(69, "069", false);
+        setup(70, "070", true);
+        setup(71, "071", true);
+        setup(72, "072", true);
+        setup(73, "073", true);
 
-        setup(15, "grass/grass_bl", false);
-        setup(16, "grass/grass_bottom", false);
-        setup(17, "grass/grass_br", false);
-        setup(18, "grass/grass_left", false);
-
-        setup(19, "grass/grass_o_bl", false);
-        setup(20, "grass/grass_o_blb", false);
-        setup(21, "grass/grass_o_bld", false);
-        setup(22, "grass/grass_o_bll", false);
-
-        setup(23, "grass/grass_o_br", false);
-        setup(24, "grass/grass_o_brb", false);
-        setup(25, "grass/grass_o_brd", false);
-        setup(26, "grass/grass_o_brr", false);
-
-        setup(27, "grass/grass_o_tl", false);
-        setup(28, "grass/grass_o_tld", false);
-        setup(29, "grass/grass_o_tll", false);
-        setup(30, "grass/grass_o_tlt", false);
-
-        setup(31, "grass/grass_o_tr", false);
-        setup(32, "grass/grass_o_trd", false);
-        setup(33, "grass/grass_o_trr", false);
-        setup(34, "grass/grass_o_trt", false);
-
-        setup(35, "grass/grass_right", false);
-        setup(36, "grass/grass_tl", false);
-        setup(37, "grass/grass_top", false);
-        setup(38, "grass/grass_tr", false);
-
-        setup(39, "dirt/dirt", false);
-        setup(40, "dirt/dirt1", false);
-        setup(41, "dirt/dirt2", false);
-        setup(42, "dirt/dirt3", false);
-        setup(43, "dirt/dirt4", false);
-
-        // Stone Boundaries
-        setup(44, "stone_wall1", true);
-        setup(45, "stone_wall2", true);
-
-        // Water Textures
-        setup(46, "water/water", true);
-        setup(47, "water/water1", true);
-        setup(48, "water/water2", true);
-        setup(49, "water/water3", true);
-
-        setup(50, "water/water_bl", true);
-        setup(51, "water/water_bottom", true);
-        setup(52, "water/water_br", true);
-        setup(53, "water/water_left", true);
-        setup(54, "water/water_right", true);
-        setup(55, "water/water_tl", true);
-        setup(56, "water/water_top", true);
-        setup(57, "water/water_tr", true);
-
-
-        setup(0, "grass", false);
-        setup(1, "stone", false);
-        setup(2, "water", true);
-        setup(5, "trees2", true);
-        setup(6, "trees3", true);
     }
 
     public void setup(int index, String imageName, boolean collision) {

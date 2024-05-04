@@ -64,7 +64,7 @@ public class EventHandler {
     }
 
     public void interactForage(Entity entity) {
-        if (gp.keyH.qPressed) {
+        if (gp.keyH.qPressed && checkSurroundingHit(entity.worldX / gp.tileSize, entity.worldY / gp.tileSize)) {
             entity.dropItem(new OBJ_JuniperBunch(gp));
         }
         gp.keyH.qPressed = false;

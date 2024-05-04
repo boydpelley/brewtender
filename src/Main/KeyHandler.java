@@ -229,5 +229,9 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_E) {
             ePressed = false;
         }
+
+        if (code == KeyEvent.VK_Q) {
+            qPressed = false;
+        }
     }
 }

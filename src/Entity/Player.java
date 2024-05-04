@@ -294,7 +294,7 @@ public class Player extends Entity {
                 text = "Collected " + list[i].name + "!";
 
                 exp += list[i].exp;
-                foraging += list[i].exp;
+                foragingExp += list[i].exp;
 
                 checkExpLevelUp();
                 checkForagingLevelUp();

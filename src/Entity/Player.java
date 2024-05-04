@@ -138,7 +138,9 @@ public class Player extends Entity {
             useTool();
         }
         else if (keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed || keyH.tPressed) {
-            gp.playSoundEffect(1);
+            if (!keyH.tPressed) {
+                gp.playSoundEffect(1);
+            }
             spriteCounter++;
             if (spriteCounter < 8) {
                 spriteNum = 0;
@@ -217,8 +219,9 @@ public class Player extends Entity {
             } else speed = 4;
         }
 
-        // We want to reset the t key being pressed afterwards
-        gp.keyH.tPressed = false;
+        // Reset the tPressed back to false. Must do it here rather than KeyHandler because the player stops moving if
+        // they try to talk to NPCs
+        keyH.tPressed = false;
 
         if (!keyH.upPressed && !keyH.downPressed && !keyH.leftPressed && !keyH.rightPressed && !usingTool) {
             spriteNum = 0;

@@ -1,10 +1,7 @@
 package Main;
 
-import Entity.Entity;
-
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.Optional;
 
 public class KeyHandler implements KeyListener {
 

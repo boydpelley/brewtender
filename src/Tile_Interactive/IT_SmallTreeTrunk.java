@@ -9,7 +9,7 @@ public class IT_SmallTreeTrunk extends InteractiveTile{
     GamePanel gp;
 
     public IT_SmallTreeTrunk(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = col * gp.tileSize;

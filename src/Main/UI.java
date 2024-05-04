@@ -2,7 +2,6 @@ package Main;
 
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -153,36 +152,6 @@ public class UI {
         g2.drawString(text, x, y);
         if (commandNum == 2) {
             g2.drawString(">", x - gp.tileSize, y);
-        }
-    }
-
-    public void drawHotBar() {
-
-        // The box for the hot-bar
-        int x = gp.tileSize * 4;
-        int y = gp.screenHeight - (gp.tileSize * 2);
-        int width = gp.screenWidth - (gp.tileSize * 8);
-        int height = gp.tileSize;
-
-        Color hotBarColor = new Color(155, 155, 155, 250);
-
-        g2.setColor(hotBarColor);
-        g2.fillRect(x, y, width, height);
-
-        hotBarHelper(x, y, width, height);
-    }
-
-    public void hotBarHelper(int startX, int startY, int width, int height) {
-
-        Color borderColor = new Color(125, 125, 125, 175);
-
-        int endX = startX + width;
-
-        g2.setStroke(new BasicStroke(4));
-        g2.setColor(borderColor);
-        while (startX < endX) {
-            g2.drawRect(startX, startY, gp.tileSize, height);
-            startX += gp.tileSize;
         }
     }
 
@@ -353,12 +322,7 @@ public class UI {
         if (commandNum == 0) {
             g2.drawString( ">", textX - 25, textY);
             if (gp.keyH.enterPressed) {
-                if (!gp.fullScreenOn) {
-                    gp.fullScreenOn = true;
-                }
-                else if (gp.fullScreenOn) {
-                    gp.fullScreenOn = false;
-                }
+                gp.fullScreenOn = !gp.fullScreenOn;
                 subState = 1;
             }
         }
@@ -592,20 +556,18 @@ public class UI {
         g2.drawRoundRect(cursorX, cursorY, cursorWidth, cursorHeight, 10, 10);
 
         // Description frame
-        int dFrameX = frameX;
         int dFrameY = frameY + frameHeight;
-        int dFrameWidth = frameWidth;
         int dFrameHeight = gp.tileSize * 3;
 
         // Draw description
-        int textX = dFrameX + 20;
+        int textX = frameX + 20;
         int textY = dFrameY + gp.tileSize;
         g2.setFont(g2.getFont().deriveFont(12F));
 
         int itemIndex = getItemIndexFromSlots();
 
         if (itemIndex < gp.player.inventory.size()) {
-            drawSubWindow(dFrameX, dFrameY, dFrameWidth, dFrameHeight);
+            drawSubWindow(frameX, dFrameY, frameWidth, dFrameHeight);
 
             for (String line : gp.player.inventory.get(itemIndex).description.split("\n")) {
                 g2.drawString(line, textX, textY);

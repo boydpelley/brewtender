@@ -3,14 +3,12 @@ package Tile_Interactive;
 import Entity.Entity;
 import Main.GamePanel;
 
-import java.awt.*;
-
 public class IT_SmallTree extends InteractiveTile {
 
     GamePanel gp;
 
     public IT_SmallTree(GamePanel gp, int col, int row) {
-        super(gp, col, row);
+        super(gp);
         this.gp = gp;
 
         this.worldX = col * gp.tileSize;

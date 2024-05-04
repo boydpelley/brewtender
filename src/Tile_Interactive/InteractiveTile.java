@@ -9,17 +9,13 @@ public class InteractiveTile extends Entity {
     GamePanel gp;
     public boolean destructible = false;
 
-    public InteractiveTile(GamePanel gp, int col, int row) {
+    public InteractiveTile(GamePanel gp) {
         super(gp);
         this.gp = gp;
     }
 
     public boolean isCorrectTool(Entity entity) {
         return false;
-    }
-
-    public void playSE() {
-
     }
 
     public InteractiveTile getDestroyedForm() {

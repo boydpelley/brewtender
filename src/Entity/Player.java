@@ -210,6 +210,11 @@ public class Player extends Entity {
             else if (keyH.rightPressed) {
                 worldX += speed;
             }
+
+            if (keyH.upPressed && keyH.rightPressed || keyH.upPressed && keyH.leftPressed ||
+                    keyH.downPressed && keyH.rightPressed || keyH.downPressed && keyH.leftPressed) {
+                speed = 3;
+            } else speed = 4;
         }
 
         // We want to reset the t key being pressed afterwards

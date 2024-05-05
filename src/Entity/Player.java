@@ -195,7 +195,7 @@ public class Player extends Entity {
         gp.cChecker.checkEntity(this, gp.iTile);
 
         // Check event
-        gp.eventHandler.checkEvent(gp.droppable);
+        gp.eventHandler.checkEvent();
 
         // If collision is false, player CAN move
         if (!collisionOn && !keyH.tPressed) {

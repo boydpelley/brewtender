@@ -17,7 +17,7 @@ public class AssetSetter {
 
         gp.droppable[mapNum][0] = new OBJ_JuniperBush(gp);
         gp.droppable[mapNum][0].worldX = 35 * gp.tileSize;
-        gp.droppable[mapNum][0].worldY = 17 * gp.tileSize;
+        gp.droppable[mapNum][0].worldY = 15 * gp.tileSize;
 
         gp.droppable[mapNum][1] = new OBJ_JuniperBush(gp);
         gp.droppable[mapNum][1].worldX = 10 * gp.tileSize;

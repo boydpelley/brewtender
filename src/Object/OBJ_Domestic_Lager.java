@@ -17,6 +17,8 @@ public class OBJ_Domestic_Lager extends Entity {
         name = "Domestic Beer";
         down1 = setup("objects/domestic_lager", gp.tileSize, gp.tileSize);
         description = "A light beer that tastes \nlike water and grain.";
+
+        price = 5;
     }
 
     public void use (Entity entity) {

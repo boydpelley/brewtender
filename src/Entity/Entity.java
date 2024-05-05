@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class Entity {
@@ -49,12 +50,15 @@ public class Entity {
     public Entity currentTool;
 
     // Item Attributes
+    public ArrayList<Entity> inventory = new ArrayList<>();
+    public final int maxInventorySize = 25;
     public int destroyValue;
     public String description = "";
     public int maxLife;
     public int life;
     public boolean invincible = false;
     public int invincibleCounter = 0;
+    public int price;
 
     // Type
     public int type;
@@ -90,8 +94,6 @@ public class Entity {
     }
 
     public void use(Entity entity) {}
-
-    public void checkDrop() {}
 
     public void dropItem(Entity droppedItem) {
         droppedItem.worldX = this.worldX + gp.tileSize;

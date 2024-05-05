@@ -14,8 +14,6 @@ public class Player extends Entity {
 
     public final int screenX;
     public final int screenY;
-    public ArrayList<Entity> inventory = new ArrayList<>();
-    public final int maxInventorySize = 25;
 
     // Requirements to level up skills
     public int nextForagingLevel, nextBeerLevel, nextCiderLevel, nextDistillingLevel, nextRepLevel, nextMarketingLevel;
@@ -329,7 +327,7 @@ public class Player extends Entity {
     }
 
     public void selectItem() {
-        int itemIndex = gp.ui.getItemIndexFromSlots();
+        int itemIndex = gp.ui.getItemIndexFromSlots(gp.ui.playerSlotCol, gp.ui.playerSlotRow);
 
         if (itemIndex < inventory.size()) {
             Entity selectedItem = inventory.get(itemIndex);

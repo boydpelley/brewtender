@@ -1,6 +1,7 @@
 package Main;
 
 import Entity.NPC_Cop;
+import Entity.NPC_StoreClerk;
 import Object.*;
 import Tile_Interactive.IT_SmallTree;
 
@@ -63,6 +64,10 @@ public class AssetSetter {
         gp.npc[mapNum][0] = new NPC_Cop(gp);
         gp.npc[mapNum][0].worldX = 20 * gp.tileSize;
         gp.npc[mapNum][0].worldY = 25 * gp.tileSize;
+
+        gp.npc[mapNum][1] = new NPC_StoreClerk(gp);
+        gp.npc[mapNum][1].worldX = 25 * gp.tileSize;
+        gp.npc[mapNum][1].worldY = 25 * gp.tileSize;
     }
 
     public void setInteractiveTile() {

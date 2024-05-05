@@ -57,8 +57,14 @@ public class EventHandler {
             if (checkSurroundingHit(0, 35, 15)) {
                 interactForage(gp.droppable[0][0]);
             }
-            if (checkSurroundingHit(0, 10, 23)) {
+            else if (checkSurroundingHit(0, 10, 23)) {
                 interactForage(gp.droppable[0][1]);
+            }
+            else if (hit(0, 41, 11, "any") && gp.keyH.ePressed) {
+                changeMap(1, 25, 16);
+            }
+            else if (hit(1, 25, 17, "any")) {
+                changeMap(0, 41, 11);
             }
         }
     }
@@ -103,5 +109,12 @@ public class EventHandler {
         }
 
         return hit;
+    }
+
+    public void changeMap(int map, int col, int row) {
+
+        gp.currentMap = map;
+        gp.player.worldX = gp.tileSize * col;
+        gp.player.worldY = gp.tileSize * row;
     }
 }

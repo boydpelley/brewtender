@@ -195,7 +195,7 @@ public class Player extends Entity {
         gp.cChecker.checkEntity(this, gp.iTile);
 
         // Check event
-        gp.eventHandler.checkEvent();
+        gp.eventHandler.checkEvent(gp.droppable);
 
         // If collision is false, player CAN move
         if (!collisionOn && !keyH.tPressed) {
@@ -275,16 +275,16 @@ public class Player extends Entity {
 
     private void damageInteractiveTile(int i) {
 
-        if (i != 999 && gp.iTile[i].destructible && gp.iTile[i].isCorrectTool(this)
-        && !gp.iTile[i].invincible) {
-            gp.iTile[i].life -= currentTool.destroyValue;
-            gp.iTile[i].invincible = true;
+        if (i != 999 && gp.iTile[gp.currentMap][i].destructible && gp.iTile[gp.currentMap][i].isCorrectTool(this)
+        && !gp.iTile[gp.currentMap][i].invincible) {
+            gp.iTile[gp.currentMap][i].life -= currentTool.destroyValue;
+            gp.iTile[gp.currentMap][i].invincible = true;
 
             // Generate particle
-            generateParticle(gp.iTile[i], gp.iTile[i]);
+            generateParticle(gp.iTile[gp.currentMap][i], gp.iTile[gp.currentMap][i]);
 
-            if (gp.iTile[i].life == 0) {
-                gp.iTile[i] = gp.iTile[i].getDestroyedForm();
+            if (gp.iTile[gp.currentMap][i].life == 0) {
+                gp.iTile[gp.currentMap][i] = gp.iTile[gp.currentMap][i].getDestroyedForm();
             }
         }
     }
@@ -293,16 +293,16 @@ public class Player extends Entity {
         toolArea = currentTool.toolArea;
     }
 
-    public void pickupObject(int i, Entity[] list) {
+    public void pickupObject(int i, Entity[][] list) {
 
         if (i != 999) {
             String text;
             if (inventory.size() != maxInventorySize) {
-                inventory.add(list[i]);
-                text = "Collected " + list[i].name + "!";
+                inventory.add(list[gp.currentMap][i]);
+                text = "Collected " + list[gp.currentMap][i].name + "!";
 
-                exp += list[i].exp;
-                foragingExp += list[i].exp;
+                exp += list[gp.currentMap][i].exp;
+                foragingExp += list[gp.currentMap][i].exp;
 
                 checkExpLevelUp();
                 checkForagingLevelUp();
@@ -310,7 +310,7 @@ public class Player extends Entity {
                 text = "Inventory full.";
             }
             gp.ui.addMessage(text);
-            list[i] = null;
+            list[gp.currentMap][i] = null;
         }
     }
 
@@ -354,7 +354,7 @@ public class Player extends Entity {
         if (i != 999) {
             if (gp.keyH.tPressed) {
                 gp.gameState = gp.dialogueState;
-                gp.npc[i].speak();
+                gp.npc[gp.currentMap][i].speak();
             }
         }
         else if (gp.keyH.ePressed) {

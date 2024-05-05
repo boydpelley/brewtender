@@ -96,9 +96,9 @@ public class Entity {
     public void dropItem(Entity droppedItem) {
         droppedItem.worldX = this.worldX + gp.tileSize;
         droppedItem.worldY = this.worldY + gp.tileSize;
-        for (int i = 0; i < gp.objDropped.length; i++) {
-            if (gp.objDropped[i] == null) {
-                gp.objDropped[i] = droppedItem;
+        for (int i = 0; i < gp.objDropped[1].length; i++) {
+            if (gp.objDropped[gp.currentMap][i] == null) {
+                gp.objDropped[gp.currentMap][i] = droppedItem;
                 break;
             }
         }

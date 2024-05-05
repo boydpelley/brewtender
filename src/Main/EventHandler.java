@@ -38,7 +38,9 @@ public class EventHandler {
         }
     }
 
-    public void checkEvent() {
+    public void checkEvent(Entity[][] entityList) {
+
+        if (entityList == null || entityList[gp.currentMap] == null) return;
 
         int xDistance = Math.abs(gp.player.worldX - previousEventX);
         int yDistance = Math.abs(gp.player.worldY - previousEventY);
@@ -48,12 +50,13 @@ public class EventHandler {
         }
 
         if (canTouchEvent) {
-            if (checkSurroundingHit( (gp.droppable[0].worldX / gp.tileSize), (gp.droppable[0].worldY / gp.tileSize) )) {
-                System.out.println("HIT");
-                interactForage(gp.droppable[0]);
-            }
-            if (checkSurroundingHit( (gp.droppable[1].worldX / gp.tileSize), (gp.droppable[1].worldY / gp.tileSize) )) {
-                interactForage(gp.droppable[1]);
+            for (int i = 0; i < entityList[1].length; i++) {
+                if (entityList[gp.currentMap][i] == null) return;
+                if (checkSurroundingHit( (entityList[gp.currentMap][i].worldX / gp.tileSize),
+                        (entityList[gp.currentMap][i].worldY / gp.tileSize) )) {
+                    System.out.println("HIT");
+                    interactForage(entityList[gp.currentMap][i]);
+                }
             }
         }
     }

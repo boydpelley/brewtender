@@ -15,15 +15,17 @@ public class TileManager {
 
     GamePanel gp;
     public Tile[] tile;
-    public int[][] mapTileNum;
+    public int[][][] mapTileNum;
 
 
     public TileManager(GamePanel gp) {
         this.gp = gp;
+
         tile = new Tile[99];
-        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
+        mapTileNum = new int[gp.maxMap][gp.maxWorldCol][gp.maxWorldRow];
         getTileImage();
-        loadMap("maps/world_map_01.txt");
+        loadMap("maps/world_map_01.txt", 0);
+        loadMap("maps/blank_house.txt", 1);
     }
 
     public void getTileImage() {
@@ -102,6 +104,20 @@ public class TileManager {
         setup(71, "071", true);
         setup(72, "072", true);
         setup(73, "073", true);
+        setup(74, "074", true);
+        setup(75, "075", true);
+        setup(76, "076", true);
+        setup(77, "077", true);
+        setup(78, "078", true);
+        setup(79, "079", true);
+        setup(80, "080", true);
+        setup(81, "081", false);
+        setup(82, "082", false);
+        setup(83, "083", false);
+        setup(84, "084", true);
+        setup(85, "085", true);
+        setup(86, "086", true);
+        setup(87, "087", true);
 
     }
 
@@ -119,7 +135,7 @@ public class TileManager {
         }
     }
 
-    public void loadMap(String filePath) {
+    public void loadMap(String filePath, int map) {
         try{
             InputStream is = getClass().getClassLoader().getResourceAsStream(filePath);
             assert is != null;
@@ -138,7 +154,7 @@ public class TileManager {
 
                     int num = Integer.parseInt(numbers[col]);
 
-                    mapTileNum[col][row] = num;
+                    mapTileNum[map][col][row] = num;
                     col++;
                 }
                 if (col == gp.maxWorldCol) {
@@ -159,7 +175,7 @@ public class TileManager {
 
         while (worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            int tileNum = mapTileNum[worldCol][worldRow];
+            int tileNum = mapTileNum[gp.currentMap][worldCol][worldRow];
 
             int worldX = worldCol * gp.tileSize;
             int worldY = worldRow * gp.tileSize;

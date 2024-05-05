@@ -28,6 +28,9 @@ public class GamePanel extends JPanel implements Runnable {
     // WORLD SETTINGS
     public final int maxWorldCol = 50;
     public final int maxWorldRow = 50;
+    public final int maxMap = 10;
+    public int currentMap = 0;
+
     // FULL SCREEN SETTINGS
     int screenWidth2 = screenWidth;
     int screenHeight2 = screenHeight;
@@ -52,11 +55,11 @@ public class GamePanel extends JPanel implements Runnable {
 
     // Entities and Objects
     public Player player = new Player(this, keyH);
-    public Entity[] obj = new Entity[15];
-    public Entity[] npc = new Entity[10];
-    public Entity[] droppable = new Entity[10];
-    public Entity[] objDropped = new Entity[50];
-    public InteractiveTile[] iTile = new InteractiveTile[30];
+    public Entity[][] obj = new Entity[maxMap][15];
+    public Entity[][] npc = new Entity[maxMap][10];
+    public Entity[][] droppable = new Entity[maxMap][10];
+    public Entity[][] objDropped = new Entity[maxMap][50];
+    public InteractiveTile[][] iTile = new InteractiveTile[maxMap][30];
     public ArrayList<Entity> particleList = new ArrayList<>();
     ArrayList<Entity> entityList = new ArrayList<>();
 
@@ -158,15 +161,15 @@ public class GamePanel extends JPanel implements Runnable {
             player.update();
 
             // NPC
-            for (Entity entity : npc) {
-                if (entity != null) {
-                    entity.update();
+            for (int i = 0; i < npc[1].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    npc[currentMap][i].update();
                 }
             }
 
-            for (InteractiveTile t : iTile) {
-                if (t != null) {
-                    t.update();
+            for (int i = 0; i < iTile[1].length; i++) {
+                if (iTile[currentMap][i] != null) {
+                    iTile[currentMap][i].update();
                 }
             }
 
@@ -200,37 +203,37 @@ public class GamePanel extends JPanel implements Runnable {
             tileM.draw(g2);
 
             // Interactive tiles
-            for (InteractiveTile tile : iTile) {
-                if (tile != null) {
-                    tile.draw(g2);
+            for (int i = 0; i < iTile[1].length; i++) {
+                if (iTile[currentMap][i] != null) {
+                    iTile[currentMap][i].draw(g2);
                 }
             }
 
             // Add entities to the list
             entityList.add(player);
 
-            for (Entity n : npc) {
-                if (n != null) {
-                    entityList.add(n);
+            for (int i = 0; i < npc[1].length; i++) {
+                if (npc[currentMap][i] != null) {
+                    entityList.add(npc[currentMap][i]);
                 }
             }
 
-            for (Entity drop : droppable) {
-                if (drop != null) {
-                    entityList.add(drop);
+            for (int i = 0; i < droppable[1].length; i++) {
+                if (droppable[currentMap][i] != null) {
+                    entityList.add(droppable[currentMap][i]);
                 }
             }
 
-            for (Entity ob : obj) {
-                if (ob != null) {
-                    entityList.add(ob);
+            for (int i = 0; i < obj[1].length; i++) {
+                if (obj[currentMap][i] != null) {
+                    entityList.add(obj[currentMap][i]);
                 }
             }
 
             // Add everything that exists in the objects dropped array
-            for (Entity ob : objDropped) {
-                if (ob != null) {
-                    entityList.add(ob);
+            for (int i = 0; i < objDropped[1].length; i++) {
+                if (objDropped[currentMap][i] != null) {
+                    entityList.add(objDropped[currentMap][i]);
                 }
             }
 

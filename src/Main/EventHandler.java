@@ -11,6 +11,7 @@ public class EventHandler {
     // These are used to set margins for an event tile to occur
     int previousEventX, previousEventY;
     boolean canTouchEvent = true;
+    int tempMap, tempCol, tempRow;
 
     public EventHandler(GamePanel gp) {
         this.gp = gp;
@@ -113,8 +114,10 @@ public class EventHandler {
 
     public void changeMap(int map, int col, int row) {
 
-        gp.currentMap = map;
-        gp.player.worldX = gp.tileSize * col;
-        gp.player.worldY = gp.tileSize * row;
+        gp.gameState = gp.transitionState;
+
+        tempMap = map;
+        tempCol = col;
+        tempRow = row;
     }
 }

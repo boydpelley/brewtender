@@ -18,6 +18,7 @@ public class UI {
     public int slotRow = 0;
     public int slotCol = 0;
     int subState = 0;
+    int counter = 0;
 
     public UI(GamePanel gp) {
         this.gp = gp;
@@ -72,6 +73,11 @@ public class UI {
         // Options state
         if (gp.gameState == gp.optionsState) {
             drawOptionsScreen();
+        }
+
+        // Transition state
+        if (gp.gameState == gp.transitionState) {
+            drawTransition();
         }
     }
 
@@ -497,6 +503,22 @@ public class UI {
                 subState = 0;
                 commandNum = 4;
             }
+        }
+    }
+
+    public void drawTransition() {
+        counter++;
+        g2.setColor(new Color(0, 0, 0, counter * 5));
+        g2.fillRect(0, 0, gp.screenWidth, gp.screenHeight);
+
+        if (counter == 35) {
+            counter = 0;
+            gp.gameState = gp.playState;
+            gp.currentMap = gp.eventHandler.tempMap;
+            gp.player.worldX = gp.tileSize * gp.eventHandler.tempCol;
+            gp.player.worldY = gp.tileSize * gp.eventHandler.tempRow;
+            gp.eventHandler.previousEventX = gp.player.worldX;
+            gp.eventHandler.previousEventY = gp.player.worldY;
         }
     }
 

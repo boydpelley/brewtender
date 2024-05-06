@@ -43,32 +43,41 @@ public class NPC_Cop extends Entity {
 
     public void setAction() {
 
-        actionLockCounter++;
+        if (onPath) {
+            int goalCol = 30;
+            int goalRow = 30;
 
-        if (actionLockCounter == 120) {
-            Random random = new Random();
+            searchPath(goalCol, goalRow);
+        }
+        else {
+            actionLockCounter++;
 
-            // Pick a number from 1-100
-            int i = random.nextInt(100) + 1;
+            if (actionLockCounter == 120) {
+                Random random = new Random();
 
-            if (i <= 25) {
-                direction = "up";
-            }
-            else if (i <= 50) {
-                direction = "down";
-            }
-            else if (i <= 75) {
-                direction = "left";
-            }
-            else {
-                direction = "right";
-            }
+                // Pick a number from 1-100
+                int i = random.nextInt(100) + 1;
 
-            actionLockCounter = 0;
+                if (i <= 25) {
+                    direction = "up";
+                }
+                else if (i <= 50) {
+                    direction = "down";
+                }
+                else if (i <= 75) {
+                    direction = "left";
+                }
+                else {
+                    direction = "right";
+                }
+
+                actionLockCounter = 0;
+            }
         }
     }
 
     public void speak() {
         super.speak();
+        onPath = true;
     }
 }

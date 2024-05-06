@@ -205,6 +205,7 @@ public class GamePanel extends JPanel implements Runnable {
         else {
             // Tiles
             tileM.draw(g2);
+            tileM.drawPath = false;
 
             // Interactive tiles
             for (int i = 0; i < iTile[1].length; i++) {
@@ -284,6 +285,8 @@ public class GamePanel extends JPanel implements Runnable {
             y += lineHeight;
 
             g2.drawString("Draw Time: " + passed, x, y);
+
+            tileM.drawPath = true;
         }
 
     }

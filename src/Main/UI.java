@@ -575,7 +575,8 @@ public class UI {
             g2.drawString(">", x - 24, y);
             if (gp.keyH.enterPressed) {
                 commandNum = 0;
-                gp.gameState = gp.playState;
+                gp.gameState = gp.dialogueState;
+                currentDialogue = "Thanks come again.";
             }
         }
     }
@@ -641,6 +642,54 @@ public class UI {
     }
 
     public void tradeSell() {
+
+        // Draw player inventory
+        drawInventory(gp.player, true);
+
+        g2.setFont(g2.getFont().deriveFont(20F));
+
+        // Draw hint window
+        int x = gp.tileSize * 2;
+        int y = gp.tileSize * 10;
+        int width = gp.tileSize * 6;
+        int height = (int)(gp.tileSize * 1.5);
+        drawSubWindow(x, y, width, height);
+        g2.drawString("[ESC] Back", x + 24, y + 45);
+
+        // Draw player coin window
+        x = gp.tileSize * 12;
+        drawSubWindow(x, y, width, height);
+        g2.drawString("Balance: " + gp.player.coin, x + 24, y + 45);
+
+        // Draw price window
+        int itemIndex = getItemIndexFromSlots(playerSlotCol, playerSlotRow);
+        if (itemIndex < gp.player.inventory.size()) {
+            x = (int)(gp.tileSize * 15.5);
+            y = (int)(gp.tileSize * 6.5);
+            width = (int)(gp.tileSize * 2.5);
+            height = gp.tileSize;
+            drawSubWindow(x, y, width, height);
+            g2.drawString("$: ", x + 10, y + 30);
+
+            int price = (int)(gp.player.inventory.get(itemIndex).price * 0.7);
+            String text = "" + price;
+            x = getXForRightAlign(text, gp.tileSize * 18 - 20);
+            g2.drawString(text, x, y + 30);
+
+            // Sell an item
+            if (gp.keyH.enterPressed) {
+                if (gp.player.inventory.get(itemIndex) == gp.player.currentTool) {
+                    commandNum = 0;
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialogue = "You cannot sell an equipped item.";
+                }
+                else {
+                    gp.player.inventory.remove(itemIndex);
+                    gp.player.coin += price;
+                }
+            }
+        }
 
     }
 

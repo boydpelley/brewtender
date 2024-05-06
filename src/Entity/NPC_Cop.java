@@ -44,8 +44,8 @@ public class NPC_Cop extends Entity {
     public void setAction() {
 
         if (onPath) {
-            int goalCol = 30;
-            int goalRow = 30;
+            int goalCol = (gp.player.worldX + gp.player.solidArea.x) / gp.tileSize;
+            int goalRow = (gp.player.worldY + gp.player.solidArea.y) / gp.tileSize;
 
             searchPath(goalCol, goalRow);
         }
@@ -79,5 +79,6 @@ public class NPC_Cop extends Entity {
     public void speak() {
         super.speak();
         onPath = true;
+        actionLockCounter = 0;
     }
 }

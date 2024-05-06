@@ -256,60 +256,55 @@ public class Entity {
             int enTopY = worldY + solidArea.y;
             int enBottomY = worldY + solidArea.y + solidArea.height;
 
-            if (enTopY > nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
+            // Check relative positions and adjust direction accordingly
+            if (worldX < nextX) {
+                direction = "right";
+            } else if (worldX > nextX) {
+                direction = "left";
+            } else if (worldY < nextY) {
+                direction = "down";
+            } else if (worldY > nextY) {
                 direction = "up";
             }
-            else if (enTopY < nextY && enLeftX >= nextX && enRightX < nextX + gp.tileSize) {
-                direction = "down";
-            }
-            else if (enTopY >= nextY && enBottomY < nextY + gp.tileSize) {
-                // left or right
-                if (enLeftX > nextX) {
-                    direction = "left";
-                }
-                if (enLeftX < nextX) {
-                    direction = "right";
-                }
-            }
-            else if (enTopY > nextY && enLeftX > nextX) {
-                // up or left
-                direction = "up";
-                checkCollision();
-                if (collisionOn) {
-                    direction = "left";
-                }
-            }
-            else if (enTopY > nextY && enLeftX < nextX) {
-                // up or right
-                direction = "up";
-                checkCollision();
-                if (collisionOn) {
-                    direction = "right";
-                }
-            }
-            else if (enTopY < nextY && enLeftX > nextX) {
-                // down or left
-                direction = "down";
-                checkCollision();
-                if (collisionOn) {
-                    direction = "left";
-                }
-            }
-            else if (enTopY < nextY && enLeftX < nextX) {
-                // down or right
-                direction = "down";
-                checkCollision();
-                if (collisionOn) {
-                    direction = "right";
+
+            // Adjust direction based on collision
+            if (collisionOn) {
+                // If collision is detected, try alternative directions
+                if (enTopY > nextY && direction.equals("up")) {
+                    if (enLeftX > nextX) {
+                        direction = "left";
+                    } else if (enRightX < nextX) {
+                        direction = "right";
+                    }
+                } else if (enBottomY < nextY && direction.equals("down")) {
+                    if (enLeftX > nextX) {
+                        direction = "left";
+                    } else if (enRightX < nextX) {
+                        direction = "right";
+                    }
+                } else if (enLeftX > nextX && direction.equals("left")) {
+                    if (enTopY > nextY) {
+                        direction = "up";
+                    } else if (enBottomY < nextY) {
+                        direction = "down";
+                    }
+                } else if (enRightX < nextX && direction.equals("right")) {
+                    if (enTopY > nextY) {
+                        direction = "up";
+                    } else if (enBottomY < nextY) {
+                        direction = "down";
+                    }
                 }
             }
 
+            /*
             // If the NPC reached the destination
             int nextCol = gp.pFinder.pathList.get(0).col;
             int nextRow = gp.pFinder.pathList.get(0).row;
             if (nextCol == goalCol && nextRow == goalRow) {
                 onPath = false;
             }
+             */
         }
     }
 }

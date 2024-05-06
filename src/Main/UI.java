@@ -617,6 +617,25 @@ public class UI {
             String text = "" + price;
             x = getXForRightAlign(text, gp.tileSize * 8 - 20);
             g2.drawString(text, x, y + 30);
+
+            // Buying an item
+            if (gp.keyH.enterPressed) {
+                if (npc.inventory.get(itemIndex).price > gp.player.coin) {
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialogue = "You need more money to buy that.";
+                    drawDialogueScreen();
+                }
+                else if (gp.player.inventory.size() == gp.player.maxInventorySize) {
+                    subState = 0;
+                    gp.gameState = gp.dialogueState;
+                    currentDialogue = "You cannot carry any more items.\nTry tossing a few things away.";
+                }
+                else {
+                    gp.player.coin -= npc.inventory.get(itemIndex).price;
+                    gp.player.inventory.add(npc.inventory.get(itemIndex));
+                }
+            }
         }
 
     }

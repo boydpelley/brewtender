@@ -1,6 +1,7 @@
 package Main;
 
 import Entity.Entity;
+import Entity.Forage;
 import Object.*;
 
 public class EventHandler {
@@ -75,9 +76,10 @@ public class EventHandler {
                 || hit(map, col, row - 1, "any") || hit(map, col + 1, row, "any"));
     }
 
-    public void interactForage(Entity entity) {
-        if (gp.keyH.qPressed && checkSurroundingHit(0,entity.worldX / gp.tileSize, entity.worldY / gp.tileSize)) {
-            entity.dropItem(new OBJ_JuniperBunch(gp));
+    public void interactForage(Forage forage) {
+        if (gp.keyH.qPressed && !forage.foraged && checkSurroundingHit(0,forage.worldX / gp.tileSize, forage.worldY / gp.tileSize)) {
+            forage.dropItem(new OBJ_JuniperBunch(gp));
+            forage.foraged = true;
         }
         gp.keyH.qPressed = false;
     }

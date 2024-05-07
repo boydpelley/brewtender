@@ -1,8 +1,7 @@
 package Main;
 
 import AI.PathFinder;
-import Entity.Entity;
-import Entity.Player;
+import Entity.*;
 import Tile.TileManager;
 import Tile_Interactive.InteractiveTile;
 
@@ -59,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable {
     public Player player = new Player(this, keyH);
     public Entity[][] obj = new Entity[maxMap][15];
     public Entity[][] npc = new Entity[maxMap][10];
-    public Entity[][] droppable = new Entity[maxMap][10];
+    public Forage[][] droppable = new Forage[maxMap][10];
     public Entity[][] objDropped = new Entity[maxMap][50];
     public InteractiveTile[][] iTile = new InteractiveTile[maxMap][30];
     public ArrayList<Entity> particleList = new ArrayList<>();

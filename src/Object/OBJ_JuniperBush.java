@@ -1,9 +1,9 @@
 package Object;
 
-import Entity.Entity;
+import Entity.Forage;
 import Main.GamePanel;
 
-public class OBJ_JuniperBush extends Entity {
+public class OBJ_JuniperBush extends Forage {
 
     public OBJ_JuniperBush(GamePanel gp) {
 

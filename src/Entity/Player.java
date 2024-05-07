@@ -64,7 +64,7 @@ public class Player extends Entity {
         ciderBrewing = 1;
         distilling = 1;
         coin = 0;
-        suspicion = 1;
+        suspicion = 75;
 
         // Default the experience points
         exp = 0;

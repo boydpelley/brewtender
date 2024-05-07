@@ -296,15 +296,6 @@ public class Entity {
                     }
                 }
             }
-
-            /*
-            // If the NPC reached the destination
-            int nextCol = gp.pFinder.pathList.get(0).col;
-            int nextRow = gp.pFinder.pathList.get(0).row;
-            if (nextCol == goalCol && nextRow == goalRow) {
-                onPath = false;
-            }
-             */
         }
     }
 }

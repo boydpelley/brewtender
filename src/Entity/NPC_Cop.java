@@ -41,6 +41,26 @@ public class NPC_Cop extends Entity {
 
     }
 
+    public void update() {
+        super.update();
+
+        if (gp.player.suspicion > 25 && !onPath) {
+
+            int xDist = Math.abs(worldX - gp.player.worldX);
+            int yDist = Math.abs(worldY - gp.player.worldY);
+            int tileDist = (xDist + yDist) / gp.tileSize;
+
+            int tilePursue = 3 + (gp.player.suspicion / 50);
+
+            int rand = new Random().nextInt(3) + 1;
+            int pursue = rand * gp.player.suspicion;
+
+            if (pursue > 100 && tileDist < tilePursue) {
+                onPath = true;
+            }
+        }
+    }
+
     public void setAction() {
 
         if (onPath) {
@@ -78,7 +98,5 @@ public class NPC_Cop extends Entity {
 
     public void speak() {
         super.speak();
-        onPath = true;
-        actionLockCounter = 0;
     }
 }

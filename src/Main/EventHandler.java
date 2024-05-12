@@ -80,6 +80,7 @@ public class EventHandler {
         if (gp.keyH.qPressed && !forage.foraged && checkSurroundingHit(0,forage.worldX / gp.tileSize, forage.worldY / gp.tileSize)) {
             forage.dropItem(new OBJ_JuniperBunch(gp));
             forage.foraged = true;
+            forage.setNewImage();
         }
         gp.keyH.qPressed = false;
     }

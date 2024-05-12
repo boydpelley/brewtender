@@ -10,4 +10,8 @@ public class Forage extends Entity {
         super(gp);
 
     }
+
+    public void setNewImage() {
+        down1 = setup(null, gp.tileSize, gp.tileSize);
+    }
 }

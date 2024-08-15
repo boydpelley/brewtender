@@ -13,6 +13,9 @@ public class OBJ_CrabApples extends Entity {
         collision = true;
         exp = 1;
         foraging = 1;
-        description = "A sour tasting apple that \nadds tart flavours to cider.\nDon't eat too many of them!" ;
+        description = "A sour tasting apple that \nadds tart flavours to cider.\nDon't eat too many of them!";
+
+        price = 1;
+        stackable = true;
     }
 }

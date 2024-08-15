@@ -19,6 +19,7 @@ public class OBJ_Domestic_Lager extends Entity {
         description = "A light beer that tastes \nlike water and grain.";
 
         price = 5;
+        stackable = true;
     }
 
     public void use (Entity entity) {

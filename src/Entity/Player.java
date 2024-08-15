@@ -63,7 +63,7 @@ public class Player extends Entity {
         beerBrewing = 1;
         ciderBrewing = 1;
         distilling = 1;
-        coin = 0;
+        coin = 50;
         suspicion = 1;
 
         // Default the experience points
@@ -294,21 +294,23 @@ public class Player extends Entity {
     public void pickupObject(int i, Entity[][] list) {
 
         if (i != 999) {
-            String text;
-            if (inventory.size() != maxInventorySize) {
-                inventory.add(list[gp.currentMap][i]);
-                text = "Collected " + list[gp.currentMap][i].name + "!";
+            if (canObtainItem(list[gp.currentMap][i])) {
+                String text;
+                if (inventory.size() != maxInventorySize) {
+                    //inventory.add(list[gp.currentMap][i]);
+                    text = "Collected " + list[gp.currentMap][i].name + "!";
 
-                exp += list[gp.currentMap][i].exp;
-                foragingExp += list[gp.currentMap][i].exp;
+                    exp += list[gp.currentMap][i].exp;
+                    foragingExp += list[gp.currentMap][i].exp;
 
-                checkExpLevelUp();
-                checkForagingLevelUp();
-            } else {
-                text = "Inventory full.";
+                    checkExpLevelUp();
+                    checkForagingLevelUp();
+                } else {
+                    text = "Inventory full.";
+                }
+                gp.ui.addMessage(text);
+                list[gp.currentMap][i] = null;
             }
-            gp.ui.addMessage(text);
-            list[gp.currentMap][i] = null;
         }
     }
 
@@ -341,7 +343,11 @@ public class Player extends Entity {
             if (selectedItem.type == type_consumable) {
                 // This will be implemented when we add consumables
                 selectedItem.use(this);
-                inventory.remove(itemIndex);
+                if (selectedItem.amount > 1) {
+                    selectedItem.amount--;
+                } else {
+                    inventory.remove(itemIndex);
+                }
                 gp.gameState = gp.playState;
             }
 
@@ -358,6 +364,48 @@ public class Player extends Entity {
         else if (gp.keyH.ePressed) {
             usingTool = true;
         }
+    }
+
+    public int searchItemInInventory(String itemName) {
+
+        int itemIndex = 999;
+
+        for (int i = 0; i < inventory.size(); i++) {
+            if (inventory.get(i).name.equals(itemName)) {
+                itemIndex = i;
+                break;
+            }
+        }
+        return itemIndex;
+    }
+
+    public boolean canObtainItem(Entity item) {
+
+        boolean canObtain = false;
+        // Check if stackable
+        if (item.stackable) {
+            int index = searchItemInInventory(item.name);
+
+            if (index != 999) {
+                inventory.get(index).amount++;
+                canObtain = true;
+            }
+            // Else we have a new item
+            else {
+                if (inventory.size() != maxInventorySize) {
+                    inventory.add(item);
+                    canObtain = true;
+                }
+            }
+        }
+        // Not a stackable item, check if there is space
+        else {
+            if (inventory.size() != maxInventorySize) {
+                inventory.add(item);
+                canObtain = true;
+            }
+        }
+        return canObtain;
     }
 
     public void draw(Graphics2D g2) {

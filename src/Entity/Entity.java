@@ -60,6 +60,8 @@ public class Entity {
     public boolean invincible = false;
     public int invincibleCounter = 0;
     public int price;
+    public boolean stackable = false;
+    public int amount = 1;
 
     // Type
     public int type;

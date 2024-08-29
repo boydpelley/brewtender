@@ -1,4 +1,4 @@
-package Object;
+package Object.Alcohol;
 
 import Entity.Entity;
 import Main.GamePanel;
@@ -15,7 +15,7 @@ public class OBJ_Domestic_Lager extends Entity {
 
         type = type_consumable;
         name = "Domestic Beer";
-        down1 = setup("objects/domestic_lager", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/alcohol/beer/domestic_lager", gp.tileSize, gp.tileSize);
         description = "A light beer that tastes \nlike water and grain.";
 
         price = 5;

@@ -1,4 +1,4 @@
-package Object;
+package Object.Tools;
 
 import Entity.Entity;
 import Main.GamePanel;
@@ -10,7 +10,7 @@ public class OBJ_Axe_Upgraded extends Entity {
 
         type = type_upgraded_axe;
         name = "Steel Axe";
-        down1 = setup("objects/upgraded_axe", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/player_items/axes/upgraded_axe", gp.tileSize, gp.tileSize);
         collision = true;
         destroyValue = 2;
         toolArea.width = 40;

@@ -1,4 +1,4 @@
-package Object;
+package Object.Forageables;
 
 import Entity.Entity;
 import Main.GamePanel;
@@ -10,7 +10,7 @@ public class OBJ_JuniperBunch extends Entity {
         super(gp);
 
         name = "Juniper Bunch";
-        down1 = setup("objects/juniper_bunch", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/forageables/juniper_bunch", gp.tileSize, gp.tileSize);
         collision = true;
         exp = 2;
         foraging = 1;

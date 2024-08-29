@@ -1,4 +1,4 @@
-package Object;
+package Object.Tools;
 
 import Entity.Entity;
 import Main.GamePanel;
@@ -10,7 +10,7 @@ public class OBJ_Axe_Std extends Entity {
 
         type = type_std_axe;
         name = "Standard Axe";
-        down1 = setup("objects/axe_std", gp.tileSize, gp.tileSize);
+        down1 = setup("objects/player_items/axes/axe_std", gp.tileSize, gp.tileSize);
         collision = true;
         destroyValue = 1;
         toolArea.width = 36;

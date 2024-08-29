@@ -746,8 +746,8 @@ public class UI {
         // Draw items
         for (int i = 0; i < entity.inventory.size(); i++) {
 
-            // For showing the cursor
-            if (entity.inventory.get(i) == entity.currentTool) {
+            // For showing the cursor for equipables
+            if (entity.inventory.get(i) == entity.currentTool || entity.inventory.get(i) == entity.currentLight) {
                 g2.setColor(Color.PINK);
                 g2.fillRoundRect(slotX, slotY, gp.tileSize, gp.tileSize, 10, 10);
             }

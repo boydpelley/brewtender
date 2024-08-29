@@ -49,6 +49,7 @@ public class Entity {
     public int coin;
     public int exp;
     public Entity currentTool;
+    public Entity currentLight;
 
     // Item Attributes
     public ArrayList<Entity> inventory = new ArrayList<>();
@@ -62,6 +63,7 @@ public class Entity {
     public int price;
     public boolean stackable = false;
     public int amount = 1;
+    public int lightRadius;
 
     // Type
     public int type;
@@ -70,6 +72,7 @@ public class Entity {
     public final int type_std_axe = 2;
     public final int type_upgraded_axe = 3;
     public final int type_consumable = 4;
+    public final int type_light = 5;
 
     public Entity(GamePanel gp) {
         this.gp = gp;

@@ -1,7 +1,7 @@
 package Entity;
 
 import Main.GamePanel;
-import Object.*;
+import Object.Alcohol.OBJ_Domestic_Lager;
 
 public class NPC_StoreClerk extends Entity {
 

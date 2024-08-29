@@ -2,11 +2,10 @@ package Entity;
 
 import Main.GamePanel;
 import Main.KeyHandler;
-import Object.*;
+import Object.Tools.OBJ_Axe_Std;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 
 public class Player extends Entity {
 
@@ -20,6 +19,7 @@ public class Player extends Entity {
 
     // Exp points associated
     public int foragingExp, beerExp, ciderExp, distillingExp, marketingExp, reputationExp;
+    public boolean lightUpdated = false;
 
 
     public Player(GamePanel gp, KeyHandler keyH) {
@@ -349,6 +349,14 @@ public class Player extends Entity {
                     inventory.remove(itemIndex);
                 }
                 gp.gameState = gp.playState;
+            }
+            if (selectedItem.type == type_light) {
+                if (currentLight == selectedItem) {
+                    currentLight = null;
+                } else {
+                    currentLight = selectedItem;
+                }
+                lightUpdated = true;
             }
 
         }

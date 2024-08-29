@@ -2,7 +2,12 @@ package Main;
 
 import Entity.NPC_Cop;
 import Entity.NPC_StoreClerk;
-import Object.*;
+import Object.Alcohol.OBJ_Domestic_Lager;
+import Object.Forageables.OBJ_CrabApples;
+import Object.Forageables.OBJ_JuniperBush;
+import Object.Tools.OBJ_Axe_Std;
+import Object.Tools.OBJ_Axe_Upgraded;
+import Object.Tools.OBJ_Lantern;
 import Tile_Interactive.IT_SmallTree;
 
 public class AssetSetter {
@@ -56,6 +61,9 @@ public class AssetSetter {
         gp.obj[mapNum][6].worldX = 25 * gp.tileSize;
         gp.obj[mapNum][6].worldY = 24 * gp.tileSize;
 
+        gp.obj[mapNum][7] = new OBJ_Lantern(gp);
+        gp.obj[mapNum][7].worldX = 15 * gp.tileSize;
+        gp.obj[mapNum][7].worldY = 18 * gp.tileSize;
     }
 
     public void setNPC() {

@@ -1,8 +1,7 @@
 package Main;
 
-import Entity.Entity;
 import Entity.Forage;
-import Object.*;
+import Object.Forageables.OBJ_JuniperBunch;
 
 public class EventHandler {
 

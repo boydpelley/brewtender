@@ -60,6 +60,11 @@ public class KeyHandler implements KeyListener {
             tradeState(code);
         }
 
+        // While in Map state
+        else if (gp.gameState == gp.mapState) {
+            mapState(code);
+        }
+
     }
 
     public void titleState(int code) {
@@ -120,6 +125,12 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_ESCAPE) {
             gp.gameState = gp.optionsState;
+        }
+        if (code == KeyEvent.VK_M) {
+            gp.gameState = gp.mapState;
+        }
+        if (code == KeyEvent.VK_X) {
+            gp.map.miniMapOn = !gp.map.miniMapOn;
         }
 
         // Debugging
@@ -267,6 +278,12 @@ public class KeyHandler implements KeyListener {
             if (gp.ui.npcSlotCol != 4) {
                 gp.ui.npcSlotCol++;
             }
+        }
+    }
+
+    public void mapState(int code) {
+        if (code == KeyEvent.VK_M) {
+            gp.gameState = gp.playState;
         }
     }
 

@@ -11,7 +11,7 @@ public class UI {
 
     GamePanel gp;
     Graphics2D g2;
-    Font retroGaming;
+    public Font retroGaming;
     public ArrayList<String> message = new ArrayList<>();
     public ArrayList<Integer> messageCounter = new ArrayList<>();
     public String currentDialogue = "";

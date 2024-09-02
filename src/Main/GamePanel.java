@@ -53,7 +53,7 @@ public class GamePanel extends JPanel implements Runnable {
     public EventHandler eventHandler = new EventHandler(this);
     Config config = new Config(this);
     public PathFinder pFinder = new PathFinder(this);
-    EnvironmentManager envManager = new EnvironmentManager(this);
+    public EnvironmentManager envManager = new EnvironmentManager(this);
     Thread gameThread;
 
     // Entities and Objects
@@ -76,6 +76,7 @@ public class GamePanel extends JPanel implements Runnable {
     public final int optionsState = 5;
     public final int transitionState = 6;
     public final int tradeState = 7;
+    public final int sleepState = 8;
 
 
     public GamePanel() {

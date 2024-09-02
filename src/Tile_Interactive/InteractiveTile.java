@@ -49,4 +49,8 @@ public class InteractiveTile extends Entity {
         return 20;
     }
 
+    public void interact() {
+
+    }
+
 }

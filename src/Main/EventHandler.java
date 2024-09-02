@@ -1,7 +1,9 @@
 package Main;
 
+import Entity.Entity;
 import Entity.Forage;
 import Object.Forageables.OBJ_JuniperBunch;
+import Tile_Interactive.InteractiveTile;
 
 public class EventHandler {
 
@@ -55,17 +57,26 @@ public class EventHandler {
         }
 
         if (canTouchEvent) {
+            // FORAGEABLES
+            // Juniper Bushes
             if (checkSurroundingHit(0, 35, 15)) {
                 interactForage(gp.droppable[0][0]);
             }
             else if (checkSurroundingHit(0, 10, 23)) {
                 interactForage(gp.droppable[0][1]);
             }
+            // Front door of house
             else if (hit(0, 41, 11, "any") && gp.keyH.ePressed) {
                 changeMap(1, 25, 16);
             }
             else if (hit(1, 25, 17, "any")) {
                 changeMap(0, 41, 11);
+            }
+            // ITILES
+            // Bed
+            else if (hit(1, 29, 10, "any") || hit(1, 29, 11, "any") ||
+            hit(1, 30, 12, "any")) {
+                interactITile(gp.iTile[1][0]);
             }
         }
     }
@@ -82,6 +93,12 @@ public class EventHandler {
             forage.setNewImage();
         }
         gp.keyH.qPressed = false;
+    }
+
+    public void interactITile(InteractiveTile iTile) {
+        if (gp.keyH.qPressed) {
+            iTile.interact();
+        }
     }
 
     public boolean hit(int map, int col, int row, String reqDirection) {

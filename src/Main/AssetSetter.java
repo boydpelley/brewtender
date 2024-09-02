@@ -8,6 +8,7 @@ import Object.Forageables.OBJ_JuniperBush;
 import Object.Tools.OBJ_Axe_Std;
 import Object.Tools.OBJ_Axe_Upgraded;
 import Object.Tools.OBJ_Lantern;
+import Tile_Interactive.IT_Bed;
 import Tile_Interactive.IT_SmallTree;
 
 public class AssetSetter {
@@ -98,6 +99,11 @@ public class AssetSetter {
         i++;
 
         gp.iTile[mapNum][i] = new IT_SmallTree(gp, 14, 15);
+
+        mapNum++;
+        i = 0;
+
+        gp.iTile[mapNum][i] = new IT_Bed(gp, 30, 10);
 
     }
 }
